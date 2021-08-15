@@ -1,14 +1,14 @@
 <?php
 
-  namespace App;
+  // namespace App;
 
-  // Class Router to manage routes to show views
+  // // Class Router to manage routes to show views
 
-  class Router {
+  // class Router {
 
-    // Default path to all controller
-    const DEFAULT_PATH = "App/Controller/";
-  }
+  //   // Default path to all controller
+  //   const DEFAULT_PATH = "App/Controller/";
+  // }
 
 ?>
 
