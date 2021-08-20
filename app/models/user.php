@@ -120,9 +120,31 @@ class User
 }
 
 $user = new User;
-$user->first_name = 'Steph';
-$user->last_name = 'Mon';
+// $user->id = 1;
+// $user->first_name = 'Steph';
+// $user->last_name = 'Mon';
+// $user->email = 'Ste.Mon@hot.com';
+// $user->password = 'mdp';
+// $user->description = 'jeune dev';
+
+$set_first_name = $user->setFirstName('Steph');
+$set_last_name = $user->setLastName('Mon');
+$set_email = $user->setEmail('Ste.Mon@hot.com');
+$set_password = $user->setPassword('mdp');
+$set_description = $user->SetDescription('jeune dev');
+$set_id = $user->setId(1);
+
 
 $fullname = $user->getFullName();
+$admin = $user->getAdmin();
+$id = $user->getId();
+$description = $user->getDescription();
+$email = $user->getEmail();
+$password = $user->getPassword();
 
 var_dump($fullname);
+var_dump($email);
+var_dump($password);
+var_dump($admin);
+var_dump($id);
+var_dump($description);
