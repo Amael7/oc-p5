@@ -1,3 +1,63 @@
-body {
-  background-color: darkgray;
-}
+@import url('footer.css'); 
+@import url('contact-form.css'); 
+@import url('header-navbar.css'); 
+@import url('setup_style.css'); 
+/* this import allow us to apply a clean reset of every element style but without breaking the necessary style from other navigateur  */
+/* @import url('reset.css');  */
+
+/* Template Base */
+
+  body {
+    background-color: rgb(171, 169, 169);
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+
+  #main-container {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    background-color: rgb(120, 120, 120);
+  }
+
+/* Template Base End */
+
+/* Home Style */
+
+  .main-title {
+    width: 100%;
+    padding: 40px 0px;
+  }
+
+  .main-title h1 {
+    margin: 0px;
+  }
+
+  .home-container {
+    display: flex;
+    margin: 30px 30px;
+    justify-content: space-around;
+  }
+
+  .home-container img {
+    width: 50%;
+  }
+
+  .my-infos {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .social_link  li {
+    display: inline-block;
+    list-style: none;
+    text-align: center;
+    padding: 2px ;
+  }
+
+/* Home Style End */
+

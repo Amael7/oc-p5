@@ -8,20 +8,18 @@
     <link href="app/assets/stylesheets/style.css" rel="stylesheet" /> 
   </head>
   <body>
-    <div class="header_navbar">
-      <?php
-        // we require the header navbar here 
-        require('app/views/partials/header_navbar.php'); 
-      ?>
+    <?php
+      // we require the header navbar here 
+      require('app/views/partials/header_navbar.php'); 
+    ?>
+
+    <div id="main-container">
+      <?= $content ?>
     </div>
 
-    <?= $content ?>
-
-    <div class="footer">
-      <?php
-        // we require the footer here 
-        require('app/views/partials/footer.php'); 
-      ?>
-    </div>
+    <?php
+      // we require the footer here 
+      require('app/views/partials/footer.php'); 
+    ?>
   </body>
 </html>
