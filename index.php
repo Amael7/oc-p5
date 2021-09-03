@@ -31,7 +31,7 @@
 
 
     // 404
-    $router->get('/404', 'ApplicationController#errorPage404');
+    // $router->get('/404', 'AppController#errorPage404');
 
     // Run Route
     $router->run();
