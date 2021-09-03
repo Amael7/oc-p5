@@ -37,4 +37,4 @@
   
 <?php $content = ob_get_clean(); ?>
 
-<?php require('app/views/layouts/template.php'); ?>
+<?php require('app/views/layouts/default.php'); ?>

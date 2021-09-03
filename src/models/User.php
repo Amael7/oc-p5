@@ -4,6 +4,8 @@
 
   namespace App\Model;
 
+  use App\Core\Model;
+
   class User extends Model
   {
     public string $first_name;
