@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controllers;
 
 use App\Core\Controller;
 
-class UsersController extends Controller {
+class AppController extends Controller {
 
   function home()
   {
-    require('src/views/application/home.php');
+    require('public/views/application/home.php');
   }
 
   function errorPage404()
   {
-    require('src/views/application/page404.php');
+    require('public/views/application/page404.php');
   }
 
 }

@@ -52,7 +52,7 @@
         $params = explode('#', $this->callable);
         // list($controller, $function) = explode('#', $this->callable);
         // $controller = 'App\\Controller\\' . $controller;
-        $controller = 'App\\Controller\\' . $params[0];
+        $controller = 'App\\Controllers\\' . $params[0];
         $controller = new $controller();
 
         return call_user_func_array([$controller, $params[1]], $this->matches);
