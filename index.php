@@ -1,8 +1,5 @@
 <?php
-//   require('app/controllers/AppController.php');
-  // require('app/controllers/UserController.php');
-  // require('app/controllers/PostController.php');
-  // require('app/controllers/CommentController.php');
+  require 'vendor/autoload.php';
 
   if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -11,7 +8,7 @@
     $_GET['url'] = '/';
   }
 
-  $router = new App\Router\Router($_GET['url']);
+  $router = new \App\Router\Router($_GET['url']);
 
   try {
     //   Router Exemple
