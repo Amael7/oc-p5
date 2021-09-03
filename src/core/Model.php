@@ -8,12 +8,6 @@
   {
     public int $id;
 
-    // Function to increment the id when an instance is create
-    // public function __construct($id)
-    // {
-    //   $this->id = $id;
-    // }
-
     // Set the id value
     public function setId(int $id): int
     {
