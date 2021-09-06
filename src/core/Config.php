@@ -4,7 +4,7 @@ namespace App\Core;
 
 class Config
 {
-
+    
     private $settings = [];
     private static $_instance; // L'attribut qui stockera l'instance unique
 
@@ -39,5 +39,4 @@ class Config
         }
         return $this->settings[$key];
     }
-
 }
