@@ -1,4 +1,8 @@
-<?php $title = 'Mon blog'; ?>
+<?php
+
+use App\Manager\AppManager;
+
+$title = 'Mon blog'; ?>
 
 <?php ob_start(); ?>
   <div class="main-title">
@@ -29,6 +33,8 @@
       </div>
     </div>
   </div>
+
+  <?php var_dump(AppManager::getDB()) ?>
   
   <div class="contact-form">
     <?php // require('app/views/forms/contact_form.php'); ?>
