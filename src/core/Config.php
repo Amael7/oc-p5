@@ -4,12 +4,13 @@ namespace App\Core;
 
 class Config
 {
-    
     private $settings = [];
     private static $_instance; // L'attribut qui stockera l'instance unique
 
     /**
     * La méthode statique qui permet d'instancier ou de récupérer l'instance unique
+    *
+    * @param $file 
     **/
     public static function getInstance($file)
     {
@@ -21,6 +22,8 @@ class Config
 
     /**
     * Le constructeur avec sa logique est privé pour émpêcher l'instanciation en dehors de la classe
+    *
+    * @param $file 
     **/
     private function __construct($file)
     {
