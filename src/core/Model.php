@@ -6,7 +6,7 @@
 
   class Model
   {
-    public int $id;
+    protected int $id;
 
     // Set the id value
     public function setId(int $id): int

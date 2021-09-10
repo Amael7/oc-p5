@@ -8,11 +8,11 @@
 
   class Post extends Model
   {
-    public string $title;
-    public string $subtitle;
-    public string $content;
-    public string $photo;
-    public $authorId;
+    private string $title;
+    private string $subtitle;
+    private string $content;
+    private string $photo;
+    private $authorId;
 
     // Get the title
     public function getTitle()
@@ -23,9 +23,9 @@
     // Set the title
     public function setTitle(string $title)
     {
-      $this->title = $title;
-      
-      return $this;
+        $this->title = $title;
+        
+        return $this;
     }
     
     // Get the subtitle

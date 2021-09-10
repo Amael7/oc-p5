@@ -8,12 +8,12 @@
 
   class User extends Model
   {
-    public string $first_name;
-    public string $last_name;
-    public string $email;
-    public string $password;
-    public bool $admin = false;
-    public string $description;
+    private string $first_name;
+    private string $last_name;
+    private string $email;
+    private string $password;
+    private bool $admin = false;
+    private string $description;
 
     // Get the full name of a user
     public function getFullName(): string
