@@ -15,7 +15,6 @@
     // $router->get('/routes', 'Controller#Function');
     // $router->post('/routes', 'Controller#Function');
     // Layout
-
     $router->get('/', 'AppController#home');
 
     // User
