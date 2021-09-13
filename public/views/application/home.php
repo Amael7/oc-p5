@@ -33,8 +33,6 @@ $title = 'Mon blog'; ?>
       </div>
     </div>
   </div>
-
-  <?php var_dump(AppManager::getDB()) ?>
   
   <div class="contact-form">
     <?php // require('app/views/forms/contact_form.php'); ?>

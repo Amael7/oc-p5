@@ -3,7 +3,6 @@
 namespace App\Manager;
 
 use App\Core\Database;
-use Symfony\Component\Dotenv\Dotenv;
 
 class AppManager extends Database {
 
@@ -21,8 +20,8 @@ class AppManager extends Database {
    */
   public static function getDB() {
     if(self::$database === null) {
-      $dotenv = new Dotenv();
-      $dotenv->load(__DIR__.'/.env');
+      $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
+      $dotenv->load();
       self::$database = new Database($_ENV['DB_NAME'], $_ENV['DB_USER'], $_ENV['DB_PASS'], $_ENV['DB_HOST']);
     }
     return self::$database;

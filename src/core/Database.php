@@ -20,7 +20,7 @@ class Database {
    * @param string $db_pass
    * @param string $db_host
    */
-  public function __construct($db_name = 'dbu747245', $db_user = 'dbu747245', $db_pass = 'aC&J29qiiE&g7@E', $db_host = 'db5003853448.hosting-data.io') {
+  public function __construct($db_name, $db_user, $db_pass, $db_host) {
     $this->db_name = $db_name;
     $this->db_user = $db_user;
     $this->db_pass = $db_pass;
@@ -34,7 +34,7 @@ class Database {
    */
   private function getPDO() {
     if($this->pdo === null) {
-      $pdo = new PDO('mysql:dbname=blog;host=localhost', self::$db_user, self::$db_pass);
+      $pdo = new PDO('mysql:dbname=' . $_ENV['DB_NAME'] . ';host=' . $_ENV['DB_HOST'] , self::$db_user, self::$db_pass);
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $this->pdo = $pdo;
     }

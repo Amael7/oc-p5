@@ -8,6 +8,15 @@
     <link href="public/assets/stylesheets/style.css" rel="stylesheet" /> 
   </head>
   <body>
+  
+  <?php 
+    use App\Manager\AppManager;
+    // \Dotenv\Dotenv::create(__DIR__)->load();
+
+    var_dump($_ENV); //['DB_NAME']
+
+    // var_dump(get_class(AppManager::getDB()->query("SELECT * FROM Users", 'User')))
+  ?>
 
     <div class="header-navbar-container">
       <div class="title-header-nav">
