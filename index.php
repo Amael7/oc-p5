@@ -8,6 +8,29 @@
     $_GET['url'] = '/';
   }
 
+  /**
+   * Load Dotenv to use .env $_ENV[DB_HOST]
+   */
+  \Dotenv\Dotenv::createImmutable(__DIR__)->load();
+    
+  $db = App\Manager\AppManager::dbConnect();
+  $users = App\Manager\UserManager::getUsers();
+  $user = App\Manager\UserManager::getUserById(1);
+  
+  dump($users);
+  dump($user);
+
+  try {
+    // foreach ($users as $user) {
+    //   dump($user);
+    // }
+
+  } catch (PDOException $e) {
+    echo "Erreur!: " . $e->getMessage() . "<br/>";
+    die();
+  }
+  
+
   $router = new App\Router\Router($_GET['url']);
 
   try {

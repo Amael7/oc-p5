@@ -20,11 +20,11 @@ class Database {
    * @param string $db_pass
    * @param string $db_host
    */
-  public function __construct($db_name, $db_user, $db_pass, $db_host) {
+  public function __construct($db_host, $db_name, $db_user, $db_pass) {
+    $this->db_host = $db_host;
     $this->db_name = $db_name;
     $this->db_user = $db_user;
     $this->db_pass = $db_pass;
-    $this->db_host = $db_host;
   }
 
   /**
@@ -32,9 +32,9 @@ class Database {
    *
    * @return object
    */
-  private function getPDO() {
+  public function getPDO() {
     if($this->pdo === null) {
-      $pdo = new PDO('mysql:dbname=' . $_ENV['DB_NAME'] . ';host=' . $_ENV['DB_HOST'] , self::$db_user, self::$db_pass);
+      $pdo = new PDO('mysql:host=' . $this->db_host . ';dbname=' . $this->db_name . ';', $this->db_user, $this->db_pass);
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $this->pdo = $pdo;
     }
@@ -47,9 +47,10 @@ class Database {
    * @param [type] $query
    * @return object
    */
-  public function query($query, $class_name) {
+  public function query($query, $class_name = null) {
     $req = $this->getPDO()->query($query);
-    $datas = $req->fetchAll(PDO::FETCH_CLASS, $class_name);
+    $datas = $req->fetchAll(PDO::FETCH_OBJ);
+    // $datas = $req->fetchAll(PDO::FETCH_CLASS, $class_name);
     return $datas;
   }
 
