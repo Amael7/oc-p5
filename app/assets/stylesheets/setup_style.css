@@ -1,0 +1,41 @@
+/* colors */
+
+/* #A7A5C6 Blue Bell */
+/* #8797B2 Cool Grey */
+/* #6D8A96 Light Slate Grey */
+/* #5D707F Dark electric Blue */
+/* #66CED6 Sky Blue Crayola */
+
+/* colors End */
+
+
+/* Typo */
+
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,300;1,400;1,700&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+  
+  h1, h2, h3 {
+    font-family: 'Roboto', sans-serif;
+    margin: 0px;
+    padding: 15px 10px;
+  }
+  
+  p, a {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0px;
+    padding: 15px 10px;
+  }
+
+/* Typo End */
+
+/* Setup */
+
+  li {
+    list-style: none;
+    
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+/* Setup End */
