@@ -4,15 +4,7 @@ namespace App\Manager;
 
 class PostManager extends AppManager {
 
-  public static function getPosts() {
-    return parent::dbConnect()->query('SELECT * FROM users');
-  }
-
-  public static function getPostById($postId) {
-    return parent::dbConnect()->query('SELECT * from users where id = ' . $postId );
-  }
-
-  public static function getPostByAuthor($authorId) {
-    return parent::dbConnect()->query('SELECT * from users where author_id = ' . $authorId );
+  public static function getPostByAuthor($authorId, $className) {
+    return parent::dbConnect()->query('SELECT * from ' . parent::getTableName($className) . ' where author_id = ' . $authorId, parent::getClassName($className));
   }
 }

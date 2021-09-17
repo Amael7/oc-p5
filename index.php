@@ -7,29 +7,28 @@
   if (empty($_GET['url'])) {
     $_GET['url'] = '/';
   }
-
+  
   /**
    * Load Dotenv to use .env $_ENV[DB_HOST]
    */
   \Dotenv\Dotenv::createImmutable(__DIR__)->load();
     
-  $db = App\Manager\AppManager::dbConnect();
-  $users = App\Manager\UserManager::getUsers();
-  $user = App\Manager\UserManager::getUserById(1);
+  // $db = App\Manager\AppManager::dbConnect();
+  $users = App\Manager\UserManager::getAll("User");
+  $user = App\Manager\UserManager::getOne(1, "User");
+  $posts = App\Manager\PostManager::getAll("Post");
+  $post = App\Manager\PostManager::getOne(1, "Post");
+  $postAuthor = App\Manager\PostManager::getPostByAuthor(1, "Post");
+  $comments = App\Manager\CommentManager::getAll("Comment");
+  $comment = App\Manager\CommentManager::getOne(1, "Comment");
   
   dump($users);
   dump($user);
-
-  try {
-    // foreach ($users as $user) {
-    //   dump($user);
-    // }
-
-  } catch (PDOException $e) {
-    echo "Erreur!: " . $e->getMessage() . "<br/>";
-    die();
-  }
-  
+  dump($posts);
+  dump($post);
+  dump($postAuthor);
+  dump($comments);
+  dump($comment);
 
   $router = new App\Router\Router($_GET['url']);
 

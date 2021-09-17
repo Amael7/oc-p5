@@ -47,10 +47,14 @@ class Database {
    * @param [type] $query
    * @return object
    */
-  public function query($query, $class_name = null) {
+  public function query($query, $class_name) {
     $req = $this->getPDO()->query($query);
-    $datas = $req->fetchAll(PDO::FETCH_OBJ);
-    // $datas = $req->fetchAll(PDO::FETCH_CLASS, $class_name);
+    while($data = $req->fetchObject($class_name)) {
+      $datas[] = $data;
+    }
+    if(count($datas) === 1 ) {
+      return $datas[0];
+    }
     return $datas;
   }
 

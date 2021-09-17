@@ -11,8 +11,8 @@
     private string $title;
     private string $subtitle;
     private string $content;
-    private string $photo;
-    private $authorId;
+    private $photo;
+    private $author_id;
 
     /**
      * Get the title
@@ -84,24 +84,24 @@
     }
 
     /**
-     * get the authorId
+     * get the author_id
      *
      * @return void
      */
     public function getAuthorId()
     {
-        return $this->authorId;
+        return $this->author_id;
     }
 
     /**
-     * set the authorId
+     * set the author_id
      *
-     * @param integer $authorId
+     * @param integer $author_id
      * @return void
      */
-    public function setAuthorId($authorId)
+    public function setAuthorId($author_id)
     {
-        $this->authorId = $authorId;
+        $this->author_id = $author_id;
 
         return $this;
     }
