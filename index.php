@@ -1,23 +1,46 @@
 <?php
-  require('app/controllers/application_controller.php');
-  // require('app/controllers/users_controller.php');
-  // require('app/controllers/posts_controller.php');
-  // require('app/controllers/comments_controller.php');
+  require 'vendor/autoload.php';
 
-
-  if (isset($_GET['action'])) {
-      // if ($_GET['action'] == 'listPosts') {
-      //     // listPosts(); 
-      // }
-      // elseif ($_GET['action'] == 'post') {
-      //     if (isset($_GET['id']) && $_GET['id'] > 0) {
-      //         // post();
-      //     }
-      //     else {
-      //         echo 'Erreur : aucun identifiant de billet envoyé';
-      //     }
-      // }
+  if (session_status() == PHP_SESSION_NONE) {
+    session_start();
   }
-  else {
-      home();
+  if (empty($_GET['url'])) {
+    $_GET['url'] = '/';
+  }
+  
+  /**
+   * Load Dotenv to use .env on all the app. **** e.g: $_ENV[DB_HOST]
+   */
+  \Dotenv\Dotenv::createImmutable(__DIR__)->load();
+
+  $router = new App\Router\Router($_GET['url']);
+
+  try {
+    // Router Exemple
+    // $router->get('/routes', 'Controller#Function');
+    // $router->post('/routes', 'Controller#Function');
+    // Layout
+    $router->get('/', 'AppController#home');
+
+    // User
+
+
+    // Post
+
+
+    // Comment
+
+
+    // Admin
+
+
+    // 404
+    // $router->get('/404', 'AppController#errorPage404');
+
+    // Run Route
+    $router->run();
+
+  } catch (\Exception $e) {
+    $errorMessage = $e-> getMessage();
+    $_SESSION['errorMessage'] = $errorMessage;
   }
