@@ -9,26 +9,9 @@
   }
   
   /**
-   * Load Dotenv to use .env $_ENV[DB_HOST]
+   * Load Dotenv to use .env on all the app. **** e.g: $_ENV[DB_HOST]
    */
   \Dotenv\Dotenv::createImmutable(__DIR__)->load();
-    
-  // $db = App\Manager\AppManager::dbConnect();
-  $users = App\Manager\UserManager::getAll("User");
-  $user = App\Manager\UserManager::getOne(1, "User");
-  $posts = App\Manager\PostManager::getAll("Post");
-  $post = App\Manager\PostManager::getOne(1, "Post");
-  $postAuthor = App\Manager\PostManager::getPostByAuthor(1, "Post");
-  $comments = App\Manager\CommentManager::getAll("Comment");
-  $comment = App\Manager\CommentManager::getOne(1, "Comment");
-  
-  dump($users);
-  dump($user);
-  dump($posts);
-  dump($post);
-  dump($postAuthor);
-  dump($comments);
-  dump($comment);
 
   $router = new App\Router\Router($_GET['url']);
 
