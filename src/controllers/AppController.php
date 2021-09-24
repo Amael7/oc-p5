@@ -12,11 +12,10 @@ use App\Core\Controller;
 
 class AppController extends Controller {
 
-
   protected $template = 'default';
 
   public function __construct() {
-    $this->viewPath = ROOT . '/oc-p5/public/Views/'; // (/Users/stephanemontoro/code/Amael7/OpenClassrooms/public/Views/)
+    $this->viewPath = ROOT . '/oc-p5/public/views/'; // (/Users/stephanemontoro/code/Amael7/OpenClassrooms/public/Views/)
   }
   
   public function contact() {
@@ -29,12 +28,16 @@ class AppController extends Controller {
   
   public function home()
   {
-    $this->render('application/home'); // ('public/views/application/home.php')
+    $this->render('application/home');
   }
 
   public function error404()
   {
-    require('public/views/application/page404.php');
+    $this->render('application/page404');
+  }
+
+  public function cv() {
+    $this->render('application/cv');
   }
 
   // pourquoi pas faire un crud general ici pour ne pas le repeter sur chaque controller  ? 

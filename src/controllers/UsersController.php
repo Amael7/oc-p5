@@ -33,6 +33,10 @@ class UsersController extends AppController {
 
   }
 
+  public function postShow() {
+    
+  }
+
   // public function new() {
 
   // }

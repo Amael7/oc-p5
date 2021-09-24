@@ -27,7 +27,7 @@
      *
      * @param array $param
      * @param string $regex
-     * @return void
+     * @return Router
      */
     public function with($param, $regex)
     {
