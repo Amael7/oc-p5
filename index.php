@@ -1,12 +1,14 @@
 <?php
   require 'vendor/autoload.php';
-
+  
   if (session_status() == PHP_SESSION_NONE) {
     session_start();
   }
   if (empty($_GET['url'])) {
     $_GET['url'] = '/';
   }
+  
+  define('ROOT', dirname(__DIR__));
   
   /**
    * Load Dotenv to use .env on all the app. **** e.g: $_ENV[DB_HOST]
@@ -30,7 +32,7 @@
     $router->post('/logout', 'UserController#logout');
     // Admin
     $router->get('/blog/user-:id/admin/Dashboard', 'UserController#AdminDashboard');    
-    $router->get('/blog/user-:id/admin/Post-:id', 'PostController#show'); // need id object , lui passer avec (->with('id', '[0-9]+'))  
+    $router->get('/blog/user-:id/admin/Post-:id', 'PostController#show'); // need id object , lui passer avec (->with('id', '[0-9]+') ??)  
     $router->get('/blog/user-:id/admin/comments', 'CommentController#index');    
     $router->post('/blog/user-:id/admin/comments-:id/valide', 'CommentController#valide');    
     $router->post('/blog/user-:id/admin/comments-:id/delete', 'CommentController#destroy');       

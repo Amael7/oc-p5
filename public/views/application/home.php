@@ -1,10 +1,7 @@
 <?php
 
-use App\Manager\AppManager;
-
 $title = 'Mon blog'; ?>
 
-<?php ob_start(); ?>
   <div class="main-title">
     <h1>Mon premier blog en PhP!</h1>
   </div>  
@@ -38,8 +35,3 @@ $title = 'Mon blog'; ?>
     <?php // require('app/views/forms/contact_form.php'); ?>
     <p>le formulaire de contact est à venir !</p>
   </div>
-  
-<?php $content = ob_get_clean(); ?>
-
-
-<?php require('public/views/template/default.php'); ?>

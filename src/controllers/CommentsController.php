@@ -3,8 +3,10 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
+use App\Manager\CommentManager;
+use App\Models\Comment;
 
-class CommentsController extends Controller {
+class CommentsController extends AppController {
 
   // public function index() {
 

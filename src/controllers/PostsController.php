@@ -3,8 +3,10 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
+use App\Manager\PostManager;
+use App\Models\Post;
 
-class PostsController extends Controller {
+class PostsController extends AppController {
 
   // public function index() {
 

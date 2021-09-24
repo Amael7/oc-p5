@@ -8,10 +8,17 @@ class Controller
   protected $viewPath;
   protected $template;
 
-  public function render($view) {
+  /**
+   * function to render a view 
+   *
+   * @param string $view
+   * @param array $params
+   * @return void
+   */
+  public function render($view, $params = []) {
     ob_start();
-    require($this->viewPath . str_replace('.', '/', $view) . 'php');
-    $content = ob_end_clean();
-    require($this->viewPath . 'templates/' . $this->template . 'php');
+    require($this->viewPath . str_replace('.', '/', $view) . '.php'); // (/Users/stephanemontoro/code/Amael7/OpenClassrooms/public/Views/application/home.php)
+    $content = ob_get_clean();
+    require($this->viewPath . 'templates/' . $this->template . '.php');
   }
 }
