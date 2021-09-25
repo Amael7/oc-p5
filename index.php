@@ -20,7 +20,6 @@
     // Layout
     $router->get('/', 'AppController#home');
     $router->get('/cv', 'AppController#cv');
-    $router->get('/contact', 'AppController#contactForm');
     $router->post('/contact', 'AppController#contact');
     // User
     $router->get('/connection', 'UserController#connectionForm');

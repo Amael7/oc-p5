@@ -1,6 +1,4 @@
-<?php
-
-$title = 'Mon blog'; ?>
+<?php $title = 'Mon blog'; ?>
 
   <div class="main-title">
     <h1>Mon premier blog en PhP!</h1>
@@ -20,7 +18,6 @@ $title = 'Mon blog'; ?>
       
       <a href="public/assets/pdf/cv.pdf" target="blank">Voici mon C.V</a>
       <a href="/cv" target="blank">Voici mon C.V</a>
-      
       <div class="social_link">
         <h3>Mes Réseaux sociaux</h3>
         <ul>
@@ -33,6 +30,5 @@ $title = 'Mon blog'; ?>
   </div>
   
   <div class="contact-form">
-    <?php // require('app/views/forms/contact_form.php'); ?>
-    <p>le formulaire de contact est à venir !</p>
+    <?php require('public/views/partials/forms/contactForm.php'); ?>
   </div>

@@ -22,10 +22,6 @@ class AppController extends Controller {
     
   }
   
-  public function contactForm() {
-    
-  }
-  
   public function home()
   {
     $this->render('application/home');

@@ -14,11 +14,11 @@
       </div>
       <div class="navbar-menu-container">
         <ul id="list-navbar-menu">
-          <li><a href="#">Accueil</a></li>
-          <li><a href="#">Articles</a></li>
-          <li><a href="#">Inscription</a></li>
-          <li><a href="#">Connexion</a></li>
-          <li><a href="#">Déconnexion</a></li>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/blog">Articles</a></li>
+          <li><a href="/connection">Inscription</a></li>
+          <li><a href="/registration">Connexion</a></li>
+          <li><a href="/logout">Déconnexion</a></li>
         </ul>
       </div> 
     </div>

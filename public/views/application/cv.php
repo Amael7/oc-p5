@@ -1,1 +1,1 @@
-<p>test</p>
+<?php $title = 'Mon cv'; ?>
