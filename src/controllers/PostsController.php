@@ -36,8 +36,4 @@ class PostsController extends AppController {
   public function destroy($id) {
 
   }
-
-  // private function setParams() {
-
-  // }
 }
