@@ -15,8 +15,9 @@ class Controller
    * @param array $params
    * @return void
    */
-  public function render($view, $params = []) {
+  public function render($view, $attributes = []) {
     ob_start();
+    extract($attributes);
     require($this->viewPath . str_replace('.', '/', $view) . '.php'); // (/Users/stephanemontoro/code/Amael7/OpenClassrooms/public/Views/application/home.php)
     $content = ob_get_clean();
     require($this->viewPath . 'templates/' . $this->template . '.php');

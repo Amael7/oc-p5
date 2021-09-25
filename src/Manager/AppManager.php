@@ -11,8 +11,8 @@ class AppManager {
   /**
    * function to get all item in db
    *
-   * @param [type] $obj
-   * @return void
+   * @param string $className
+   * @return array
    */
   public static function getAll($className) {
     return self::dbConnect()->query('SELECT * FROM ' . self::getTableName($className) , self::getClassName($className));
@@ -21,8 +21,8 @@ class AppManager {
   /**
    * function to get one item by id in db
    *
-   * @param [type] $obj
-   * @param [type] $objId
+   * @param integer $objId
+   * @param string $className
    * @return void
    */
   public static function getOne($objId, $className) {
@@ -47,7 +47,7 @@ class AppManager {
   /**
    * function to transform the classname into Table Name
    *
-   * @param [type] $className
+   * @param string $className
    * @return string
    */
   protected static function getTableName(string $className) {

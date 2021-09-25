@@ -28,8 +28,8 @@
     $router->post('/login', 'UsersController#login');
     $router->post('/logout', 'UsersController#logout');
     // Admin
-    $router->get('/blog/admin/Dashboard', 'UsersController#adminDashboard');    
-    $router->get('/blog/admin/Post-:id', 'UsersController#adminPostShow')->with('id', '[0-9]+');
+    $router->get('/blog/admin/dashboard', 'UsersController#adminDashboard');    
+    $router->get('/blog/admin/post-:id', 'UsersController#adminPostShow')->with('id', '[0-9]+');
     $router->get('/blog/admin/comments', 'CommentsController#index');    
     $router->post('/blog/admin/comments-:id/valide', 'CommentsController#valide')->with('id', '[0-9]+');    
     $router->post('/blog/admin/comments-:id/delete', 'CommentsController#destroy')->with('id', '[0-9]+');       

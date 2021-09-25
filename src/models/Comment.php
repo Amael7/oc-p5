@@ -104,4 +104,13 @@
 
         return $this;
     }
+
+    /**
+     * function to display the id with the parent protected method getId()
+     *
+     * @return int
+     */
+    public function id() {
+        return $this->getId();
+    }
   }

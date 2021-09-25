@@ -44,7 +44,7 @@ class Database {
   /**
    * function to give an sql query 
    *
-   * @param [type] $query
+   * @param string $query
    * @return object
    */
   public function query($query, $class_name) {
@@ -61,9 +61,9 @@ class Database {
   /**
    * function to call an sql request with attributes and protected from sql injection
    *
-   * @param [type] $query
-   * @param [type] $attributes
-   * @param [type] $class_name
+   * @param string $query
+   * @param array $attributes
+   * @param string $class_name
    * @return void
    */
   public function prepare($query, $attributes, $class_name, $one = false) {

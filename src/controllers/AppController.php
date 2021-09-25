@@ -29,7 +29,7 @@ class AppController extends Controller {
 
   public function error404()
   {
-    $this->render('application/page404');
+    $this->render('errors/404');
   }
 
   public function cv() {

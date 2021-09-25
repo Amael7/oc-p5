@@ -11,7 +11,7 @@ class UsersController extends AppController {
     $this->render('users/new');
   }
 
-  public function show() {
+  public function show($id) {
     $this->render('users/show');
   }
 
@@ -19,11 +19,11 @@ class UsersController extends AppController {
 
   }
 
-  public function edit() {
+  public function edit($id) {
     $this->render('users/edit');
   }
 
-  public function update() {
+  public function update($id) {
 
   }
 
@@ -43,7 +43,8 @@ class UsersController extends AppController {
     $this->render('admin/adminDashboard');
   }
   
-  public function adminPostShow() {
+  public function adminPostShow($postId) {
     $this->render('admin/adminPostShow');
   }
+
 }

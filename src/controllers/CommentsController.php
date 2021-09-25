@@ -11,7 +11,7 @@ class CommentsController extends AppController {
 
   // }
 
-  // public function show() {
+  // public function show($id) {
 
   // }
 
@@ -23,15 +23,15 @@ class CommentsController extends AppController {
     
   }
 
-  public function edit() {
+  public function edit($id) {
     $this->render('comments/edit');
   }
 
-  public function update() {
+  public function update($id) {
 
   }
 
-  public function destroy() {
+  public function destroy($id) {
 
   }
 }
