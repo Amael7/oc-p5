@@ -36,5 +36,4 @@ class AppController extends Controller {
     $this->render('application/cv');
   }
 
-  // pourquoi pas faire un crud general ici pour ne pas le repeter sur chaque controller  ? 
 }

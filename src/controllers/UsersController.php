@@ -2,23 +2,33 @@
 
 namespace App\Controllers;
 
-use App\Core\Controller;
 use App\Manager\UserManager;
 use App\Models\User;
 
 class UsersController extends AppController {
 
-  
-  public function connectionForm() {
-
-  }
-  
-  public function registrationForm() {
-
+  public function new() {
+    $this->render('users/new');
   }
 
-  public function registration() {
+  public function show() {
+    $this->render('users/show');
+  }
 
+  public function create() {
+
+  }
+
+  public function edit() {
+    $this->render('users/edit');
+  }
+
+  public function update() {
+
+  }
+
+  public function connectionView() {
+    $this->render('users/connection');
   }
 
   public function login() {
@@ -30,29 +40,10 @@ class UsersController extends AppController {
   }
 
   public function adminDashboard() {
-
+    $this->render('admin/adminDashboard');
   }
-
-  public function postShow() {
-    
+  
+  public function adminPostShow() {
+    $this->render('admin/adminPostShow');
   }
-
-  // public function new() {
-
-  // }
-
-  // public function create() {
-
-  // }
-
-  // public function edit() {
-    
-  // }
-
-  // public function update() {
-
-  // }
-
-
-
 }

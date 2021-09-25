@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Core\Controller;
 use App\Manager\CommentManager;
 use App\Models\Comment;
 
@@ -16,23 +15,23 @@ class CommentsController extends AppController {
 
   // }
 
-  // public function new() {
+  public function new() {
+    $this->render('comments/new');
+  }
 
-  // }
-
-  // public function create() {
+  public function create() {
     
-  // }
+  }
 
-  // public function edit() {
+  public function edit() {
+    $this->render('comments/edit');
+  }
 
-  // }
+  public function update() {
 
-  // public function update() {
+  }
 
-  // }
+  public function destroy() {
 
-  // public function destroy() {
-
-  // }
+  }
 }

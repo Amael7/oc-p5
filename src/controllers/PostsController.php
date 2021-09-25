@@ -2,37 +2,36 @@
 
 namespace App\Controllers;
 
-use App\Core\Controller;
 use App\Manager\PostManager;
 use App\Models\Post;
 
 class PostsController extends AppController {
 
-  // public function index() {
+  public function index() {
+    $this->render('posts/index');
+  }
 
-  // }
-
-  // public function show() {
-
-  // }
-
-  // public function new() {
-
-  // }
-
-  // public function create() {
+  public function show() {
+    $this->render('posts/show');
+  }
+  
+  public function new() {
+    $this->render('posts/new');
+  }
+  
+  public function create() {
     
-  // }
+  }
+  
+  public function edit() {
+    $this->render('posts/edit');
+  }
 
-  // public function edit() {
+  public function update() {
 
-  // }
+  }
 
-  // public function update() {
+  public function destroy() {
 
-  // }
-
-  // public function destroy() {
-
-  // }
+  }
 }
