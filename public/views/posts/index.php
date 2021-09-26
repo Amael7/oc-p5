@@ -2,6 +2,7 @@
 <?php if(isset($posts) == []): ?>
   <h2>Aucun Articles</h2>
   <?php else: ?>
+    <a href="/blog/post/new">Créer un nouvelle article</a>
     <?php foreach($posts as $post): ?>
       <a href=<?= "/blog/post-" . $post->id() ?> data-id="<?= $post->id() ?>" >
         <h2><?= $post->getTitle() ?></h2>

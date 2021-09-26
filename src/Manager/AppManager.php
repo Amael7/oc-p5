@@ -28,6 +28,19 @@ class AppManager {
   public static function getOne($objId, $className) {
     return self::dbConnect()->query('SELECT * from ' . self::getTableName($className) . ' where id = ' . $objId, self::getClassName($className));
   }
+  
+  public static function create($className, $attributes = []) {
+    $sql_column = [];
+    $values = [];
+    foreach($attributes as $k => $v) {
+      $sql_column[] = "$k = ?";
+      $values[] = $v;
+    }
+    // $values[] = $id;
+    $sql_column = implode(', ', $sql_column);
+    // return self::dbConnect()->query('INSERT INTO ' . self::getTableName($className) . ' ' . $sql_column, $values);
+    // return self::dbConnect()->query('INSERT INTO Posts id = ?, title = ?, subtitle = ?, content = ?, author_id = 1, created_at = ?, updated_at = ?');
+  }
 
   /**
    * function to connect to the Database

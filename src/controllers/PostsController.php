@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Manager\PostManager;
 use App\Models\Post;
+use App\Models\Form;
 
 class PostsController extends AppController {
 
@@ -18,11 +19,15 @@ class PostsController extends AppController {
   }
   
   public function new() {
-    $this->render('posts/new');
+    $form = new Form($_POST);
+    $this->render('posts/new', compact('form'));
   }
   
   public function create() {
-    
+    // $post = $_POST;
+    // $post = PostManager::create('Post', $post);
+    // $post = PostManager::getOne($id, "Post");
+    // $this->render('posts/show', compact('post'));
   }
   
   public function edit($id) {
