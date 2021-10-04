@@ -3,37 +3,27 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
-// use App\Manager\UserManager;
-// use App\Models\User;
-// use App\Manager\PostManager;
-// use App\Models\Post;
-// use App\Manager\CommentManager;
-// use App\Models\Comment;
+use App\Core\View\View;
 
 class AppController extends Controller {
 
-  protected $template = 'default';
-
-  public function __construct() {
-    $this->viewPath = ROOT . '/oc-p5/public/views/'; // (/Users/stephanemontoro/code/Amael7/OpenClassrooms/public/Views/)
-  }
-  
   public function contact() {
     
   }
   
   public function home()
   {
-    $this->render('application/home');
+    $view = new View('Acceuil', 'application/home');
+    $view->render();
   }
 
   public function error404()
   {
-    $this->render('errors/404');
+    // $this->render('errors/404');
   }
 
   public function cv() {
-    $this->render('application/cv');
+    // $this->render('application/cv');
   }
 
 }

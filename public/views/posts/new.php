@@ -1,15 +1,13 @@
 
-<?php 
-$title = 'Nouvelle Article';
-// $form = new App\Models\Form($_POST);
-// dump($form->input('title', 'Titre', ['type' => 'text']));
-?>
-<form action="/blog/post/new" method="post">
-  <?php 
-    $form->input('title', 'Titre');
-    $form->input('subtitle', 'Sous-titre');
-    $form->input('content', 'Content');
-    $form->input('photo', 'Photo');
-    $form->submit('Ajouter');
-  ?>
-</form>
+<?php $title = 'Nouvelle Article'; ?>
+<div class="form-section">  
+  <form action="/blog/post/new" method="post">
+    <?php 
+      // echo $form->input('title', 'Titre');
+      // echo $form->input('subtitle', 'Sous-titre');
+      // echo $form->input('content', 'Content', ['type'=> 'textarea']);
+      // echo $form->input('photo', 'Photo');
+      // echo $form->submit('Ajouter');
+    ?>
+  </form>
+</div>

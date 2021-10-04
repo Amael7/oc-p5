@@ -1,4 +1,4 @@
-<?php $title = 'Les Articles'; ?>
+<?php // $title = 'Les Articles'; ?>
 <?php if(isset($posts) == []): ?>
   <h2>Aucun Articles</h2>
   <?php else: ?>

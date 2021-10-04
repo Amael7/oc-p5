@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Manager\PostManager;
 use App\Models\Post;
-use App\Models\Form;
 
 class PostsController extends AppController {
 
@@ -19,7 +18,6 @@ class PostsController extends AppController {
   }
   
   public function new() {
-    $form = new Form($_POST);
     $this->render('posts/new', compact('form'));
   }
   
