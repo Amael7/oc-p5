@@ -27,7 +27,7 @@
      *
      * @return integer
      */
-    protected function getId(): int
+    public function getId(): int
     {
       return $this->id;
     }
@@ -49,7 +49,7 @@
      *
      * @return integer
      */
-    protected function getCreatedAt(): string
+    public function getCreatedAt(): string
     {
       return $this->created_at;
     }
@@ -71,7 +71,7 @@
      *
      * @return integer
      */
-    protected function getUpdatedAt(): string
+    public function getUpdatedAt(): string
     {
       return $this->updated_at;
     }

@@ -1,5 +1,3 @@
-<?php // $title = 'Mon blog'; ?>
-
   <div class="main-title">
     <h1>Mon premier blog en PhP!</h1>
   </div>  

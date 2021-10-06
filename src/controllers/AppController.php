@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Core\Controller;
-use App\Core\View\View;
+use \App\Core\Controller;
+use \App\Core\View;
 
 class AppController extends Controller {
 
@@ -19,7 +19,8 @@ class AppController extends Controller {
 
   public function error404()
   {
-    // $this->render('errors/404');
+    $view = new View('Page Introuvable', 'errors/404');
+    $view->render();
   }
 
   public function cv() {

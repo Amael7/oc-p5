@@ -9,7 +9,7 @@ class PostManager extends AppManager {
    *
    * @param integer $authorId
    * @param string $className
-   * @return void
+   * @return Post
    */
   public static function getPostByAuthor($authorId, $className) {
     return parent::dbConnect()->query('SELECT * from ' . parent::getTableName($className) . ' where author_id = ' . $authorId, parent::getClassName($className));

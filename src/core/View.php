@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Core\View;
+// namespace App\Controllers;
+namespace App\Core;
 
 class View {
 
@@ -62,16 +63,17 @@ class View {
    *
    * @param string $view
    * @param array $params
-   * @return void
+   * @return View
    */
-  public function render($attributes = []) {
+  public function render($attributes = null) {
     ob_start();
     if(!is_null($attributes)) {
       extract($attributes);
     } 
-    require($this->defaultPath . str_replace('.', '/', $this->getViewPath()) . '.php'); // (/Users/stephanemontoro/code/Amael7/OpenClassrooms/public/Views/application/home.php)
+    $title = $this->getTitle();
+    require($this->getDefaultPath() . str_replace('.', '/', $this->getViewPath()) . '.php'); // (/Users/stephanemontoro/code/Amael7/OpenClassrooms/public/Views/application/home.php)
     $content = ob_get_clean();
-    require($this->viewPath . 'templates/' . $this->template . '.php');
+    require($this->getDefaultPath() . 'templates/' . $this->getLayout() . '.php');
   }
 
 }

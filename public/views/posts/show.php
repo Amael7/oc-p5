@@ -1,4 +1,3 @@
-<?php $title = 'Article n°' . $post->id(); ?>
 <?php if(isset($post) == null): ?>
   <h2>Aucun Article</h2>
 <?php else: ?>
