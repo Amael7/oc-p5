@@ -64,15 +64,16 @@ class Database {
    * @param string $query
    * @param array $attributes
    * @param string $class_name
-   * @return void
+   * @return 
    */
-  public function prepare($query, $attributes, $class_name, $one = false) {
+  public function prepare($query, $attributes, $class_name, $fetch = false) {
     $req = $this->getPDO()->prepare($query);
     $req->execute($attributes);
     $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
-    if($one) {
+    $datas = null;
+    if($fetch === 'one') {
       $datas = $req->fetch();
-    } else {
+    } elseif($fetch === 'all') {
       $datas = $req->fetchAll();
     }
     return $datas;

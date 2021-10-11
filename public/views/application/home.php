@@ -3,7 +3,7 @@
   </div>  
   <div class="home-container">
     
-    <img src="public/assets/images/pp.jpg" alt="Photo de Profil" style="width: 350px; height: 400px;">
+    <img src="/public/assets/images/pp.jpg" alt="Photo de Profil" style="width: 350px; height: 400px;">
     
     <div class="my-infos">
       
@@ -14,7 +14,7 @@
         reconvertis en Développeur web depuis octobre 2019 !
       </p>
       
-      <a href="public/assets/pdf/cv.pdf" target="blank">Voici mon C.V</a>
+      <a href="/public/assets/pdf/cv.pdf" target="blank">Voici mon C.V</a>
       <a href="/cv" target="blank">Voici mon C.V</a>
       <div class="social_link">
         <h3>Mes Réseaux sociaux</h3>

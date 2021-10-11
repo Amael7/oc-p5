@@ -8,11 +8,11 @@ use App\Models\User;
 class UsersController extends AppController {
 
   public function new() {
-    $this->render('users/new');
+    // $this->render('users/new');
   }
 
   public function show($id) {
-    $this->render('users/show');
+    // $this->render('users/show');
   }
 
   public function create() {
@@ -20,7 +20,7 @@ class UsersController extends AppController {
   }
 
   public function edit($id) {
-    $this->render('users/edit');
+    // $this->render('users/edit');
   }
 
   public function update($id) {
@@ -28,7 +28,7 @@ class UsersController extends AppController {
   }
 
   public function connectionView() {
-    $this->render('users/connection');
+    // $this->render('users/connection');
   }
 
   public function login() {
@@ -40,11 +40,11 @@ class UsersController extends AppController {
   }
 
   public function adminDashboard() {
-    $this->render('admin/adminDashboard');
+    // $this->render('admin/adminDashboard');
   }
   
   public function adminPostShow($postId) {
-    $this->render('admin/adminPostShow');
+    // $this->render('admin/adminPostShow');
   }
 
 }

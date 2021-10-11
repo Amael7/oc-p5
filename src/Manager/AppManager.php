@@ -29,17 +29,21 @@ class AppManager {
     return self::dbConnect()->query('SELECT * from ' . self::getTableName($className) . ' where id = ' . $objId, self::getClassName($className));
   }
   
-  public static function create($className, $attributes = []) {
-    $sql_column = [];
-    $values = [];
-    foreach($attributes as $k => $v) {
-      $sql_column[] = "$k = ?";
-      $values[] = $v;
-    }
-    // $values[] = $id;
-    $sql_column = implode(', ', $sql_column);
-    // return self::dbConnect()->query('INSERT INTO ' . self::getTableName($className) . ' ' . $sql_column, $values);
-    // return self::dbConnect()->query('INSERT INTO Posts id = ?, title = ?, subtitle = ?, content = ?, author_id = 1, created_at = ?, updated_at = ?');
+  /**
+   * function to add one row to the db to create something
+   * example of how to use this function
+   * PostManager::addOne('Post', '(title, subtitle, content, photo, author_id)', '(:title, :subtitle, :content, :photo, :author_id)', [':title' => $title, ':subtitle' => $subTitle, ':content' => $content,':photo' => $photo,':author_id' => $authorId]);
+   *
+   * @param string $className
+   * @param string $sqlColumn
+   * @param string $sqlColumnValue
+   * @param array $attributes
+   * @return
+   */
+  public static function addOneRow($className, $sqlColumn, $sqlColumnValue, $attributes = []) {
+    $sql = 'INSERT INTO ' . self::getTableName($className) . ' ' . $sqlColumn . ' VALUES ' . $sqlColumnValue;
+    $result = self::dbConnect()->prepare($sql, $attributes, $className);
+    return $result;
   }
 
   /**
