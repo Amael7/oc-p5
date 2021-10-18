@@ -64,6 +64,7 @@ class Database {
    * @param string $query
    * @param array $attributes
    * @param string $class_name
+   * @param string $fetch
    * @return 
    */
   public function prepare($query, $attributes, $class_name, $fetch = false) {

@@ -47,13 +47,13 @@ class PostsController extends AppController {
     // count if 0 object === vide
     // et si le save fonctionne on va mettre un message flash qui dit création avec success et on reconduit sur l'index des post 
     // sinon on mets un message flash pour dire que les champs ne sont pas correct et on render à nouveau notre formulaire
-    // if ($post === true) {
-    //   $_SESSION['flash']['success'] = 'Votre article à bien été ajouter.';
-    //   header('Location: /blog');
-    //   } else {
-    //       $_SESSION['flash']['danger'] = 'Impossible d\'ajouter cette article.';
-    //   header('Location: /blog/post/new');
-    // }
+    if ($post === true) {
+      $_SESSION['flash']['success'] = 'Votre article à bien été ajouter.';
+      header('Location: /blog');
+      } else {
+          $_SESSION['flash']['danger'] = 'Impossible d\'ajouter cette article.';
+      header('Location: /blog/post/new');
+    }
   }
   
   public function edit($id) {
