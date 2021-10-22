@@ -11,16 +11,16 @@ class Validation {
    * @return
    */
   public static function check($data) {
-    if (isset($data) && ($data != '')) {
+    if (isset($data) && ($data !== '')) {
       $data = trim($data);
       $data = stripslashes($data);
       $data = htmlspecialchars($data);
 
       return $data;
     } else {
-        return false;
-        // $_SESSION['flash']['danger'] = 'Les champs ne sont pas remplis correctement';
-        // header('Location: /blog/admin/dashboard'); // redirection ?
+      $_SESSION['flash']['danger'] = 'Les champs ne sont pas remplis correctement';
+      // header('Location: /blog/admin/dashboard');
+      throw new \Exception('Les champs ne sont pas remplis correctement');
     }
   }
 }

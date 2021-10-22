@@ -40,7 +40,7 @@
     $router->post('/blog/post/new', 'PostsController#create');
     $router->get('/blog/post-:id/edit', 'PostsController#edit')->with('id', '[0-9]+');
     $router->post('/blog/post-:id/edit', 'PostsController#update')->with('id', '[0-9]+');
-    $router->post('/blog/post-:id/delete', 'PostsController#destroy')->with('id', '[0-9]+');
+    $router->get('/blog/post-:id/delete', 'PostsController#destroy')->with('id', '[0-9]+');
     // Comment
     $router->get('/blog/comment/new', 'CommentsController#new');
     $router->post('/blog/comment/new', 'CommentsController#create');
@@ -54,8 +54,6 @@
   } catch (\Exception $e) {
     $errorMessage = $e-> getMessage();
     $_SESSION['errorMessage'] = $errorMessage;
-    dump($errorMessage);
-    exit();
     header('HTTP/1.1 404 Not Found');
     header('Location: /404');
   }

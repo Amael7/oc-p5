@@ -69,9 +69,8 @@ class Database {
    */
   public function prepare($query, $attributes, $class_name, $fetch = false) {
     $req = $this->getPDO()->prepare($query);
-    $req->execute($attributes);
+    $datas = $req->execute($attributes);
     $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
-    $datas = null;
     if($fetch === 'one') {
       $datas = $req->fetch();
     } elseif($fetch === 'all') {

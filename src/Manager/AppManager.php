@@ -46,6 +46,38 @@ class AppManager {
     return $result;
   }
 
+  // /**
+  //  * function to update one row to the db to create something
+  //  * example of how to use this function
+  //  * PostManager::updateOneRow('Post', '(title, subtitle, content, photo, author_id)', '(:title, :subtitle, :content, :photo, :author_id)', [':title' => $title, ':subtitle' => $subTitle, ':content' => $content,':photo' => $photo,':author_id' => $authorId]);
+  //     // UPDATE Posts SET title = :title, recipe = :recipe WHERE recipe_id = :id
+  //  *
+  //  * @param string $className
+  //  * @param string $sqlColumn
+  //  * @param string $sqlColumnValue
+  //  * @param array $attributes
+  //  * @return
+  //  */
+  // public static function updateOneRow($className, $sqlColumn, $sqlColumnValue, $attributes = []) {
+  //   $sql = 'UPDATE ' . self::getTableName($className) . ' SET ' . $sqlColumn . ' VALUES ' . $sqlColumnValue;
+  //   $result = self::dbConnect()->prepare($sql, $attributes, $className);
+  //   return $result;
+  // }
+
+  /**
+   * Function to destroy one row in the Database
+   * example : PostManager::deleteOneRow('Post', $id);
+   *
+   * @param string $className
+   * @param integer $id
+   * @return
+   */
+  public static function deleteOneRow($className, $id) {
+    $sql = 'DELETE FROM ' . self::getTableName($className) . ' WHERE id = ' . $id;
+    $result = self::dbConnect()->prepare($sql, [$id], $className);
+    return $result;
+  }
+
   /**
    * function to connect to the Database
    *
@@ -69,6 +101,16 @@ class AppManager {
    */
   protected static function getTableName(string $className) {
     return $className . "s";
+  }
+
+  /**
+   * function to transform the classname into Table Name with '_id'
+   *
+   * @param string $className
+   * @return string
+   */
+  protected static function getTableNameWithId(string $className) {
+    return strtolower($className) . "_id";
   }
 
   /**

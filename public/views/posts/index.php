@@ -8,5 +8,6 @@
       </a>
       <h3><?= $post->getSubtitle() ?></h3>
       <p><?= $post->getContent() ?></p>
+      <a href=<?= "/blog/post-{$post->id()}/delete" ?> data-id="<?= $post->id() ?>" >Supprimer le post</a>
     <?php endforeach; ?>
 <?php endif; ?>
