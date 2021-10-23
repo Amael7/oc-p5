@@ -46,23 +46,23 @@ class AppManager {
     return $result;
   }
 
-  // /**
-  //  * function to update one row to the db to create something
-  //  * example of how to use this function
-  //  * PostManager::updateOneRow('Post', '(title, subtitle, content, photo, author_id)', '(:title, :subtitle, :content, :photo, :author_id)', [':title' => $title, ':subtitle' => $subTitle, ':content' => $content,':photo' => $photo,':author_id' => $authorId]);
-  //     // UPDATE Posts SET title = :title, recipe = :recipe WHERE recipe_id = :id
-  //  *
-  //  * @param string $className
-  //  * @param string $sqlColumn
-  //  * @param string $sqlColumnValue
-  //  * @param array $attributes
-  //  * @return
-  //  */
-  // public static function updateOneRow($className, $sqlColumn, $sqlColumnValue, $attributes = []) {
-  //   $sql = 'UPDATE ' . self::getTableName($className) . ' SET ' . $sqlColumn . ' VALUES ' . $sqlColumnValue;
-  //   $result = self::dbConnect()->prepare($sql, $attributes, $className);
-  //   return $result;
-  // }
+  /**
+   * function to update one row to the db to create something
+   * example of how to use this function
+   * PostManager::updateOneRow('Post', '(title, subtitle, content, photo, author_id)', '(:title, :subtitle, :content, :photo, :author_id)', [':title' => $title, ':subtitle' => $subTitle, ':content' => $content,':photo' => $photo,':author_id' => $authorId]);
+      // UPDATE Posts SET title = :title, recipe = :recipe WHERE recipe_id = :id
+   *
+   * @param string $className
+   * @param string $sqlColumn
+   * @param string $sqlColumnValue
+   * @param array $attributes
+   * @return
+   */
+  public static function updateOneRow($className, $sqlColumn, $sqlColumnValue, $attributes = []) {
+    $sql = 'UPDATE ' . self::getTableName($className) . ' SET ' . $sqlColumn . ' VALUES ' . $sqlColumnValue;
+    $result = self::dbConnect()->prepare($sql, $attributes, $className);
+    return $result;
+  }
 
   /**
    * Function to destroy one row in the Database

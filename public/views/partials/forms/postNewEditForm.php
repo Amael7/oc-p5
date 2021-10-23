@@ -1,3 +1,4 @@
+<?php dump($_POST); ?>
 <div class="form-section">  
   <form action="/blog/post/new" method="post">
   

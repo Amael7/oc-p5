@@ -54,7 +54,7 @@ class PostsController extends AppController {
   public function edit($id) {
     $post = PostManager::getOne($id, "Post");
     $postId = $post->getId();
-    $view = new View("Modification Article n°$postId", '/blog/post-:id/edit');
+    $view = new View("Modification Article n°$postId", 'posts/edit');
     $view->render();
   }
 
