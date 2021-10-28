@@ -84,6 +84,29 @@
     }
 
     /**
+     * get the photo
+     *
+     * @return string
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * set the photo
+     *
+     * @param string $photo
+     * @return string
+     */
+    public function setPhoto(string $photo)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
      * get the author_id
      *
      * @return integer

@@ -59,7 +59,7 @@ class AppManager {
    * @return
    */
   public static function updateOneRow($className, $sqlColumn, $sqlColumnValue, $attributes = []) {
-    $sql = 'UPDATE ' . self::getTableName($className) . ' SET ' . $sqlColumn . ' VALUES ' . $sqlColumnValue;
+    $sql = 'UPDATE ' . self::getTableName($className) . ' SET ' . $sqlColumn . ' VALUES ' . $sqlColumnValue . " WHERE id = " . $attributes['id'];
     $result = self::dbConnect()->prepare($sql, $attributes, $className);
     return $result;
   }
