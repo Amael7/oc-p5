@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Manager\CommentManager;
 use App\Models\Comment;
+use App\Core\Validation;
+use App\Core\View;
 
 class CommentsController extends AppController {
 
@@ -16,7 +18,8 @@ class CommentsController extends AppController {
   // }
 
   public function new() {
-    $this->render('comments/new');
+    $view = new View('Nouveau commentaire', 'comments/new');
+    $view->render();
   }
 
   public function create() {
@@ -24,7 +27,13 @@ class CommentsController extends AppController {
   }
 
   public function edit($id) {
-    $this->render('comments/edit');
+    $comment = CommentManager::getOne($id, "Comment");
+    $commentId = $comment->getId();
+    $_POST['title'] =  $comment->getTitle();
+    $_POST['content'] = $comment->getContent();
+    $_POST['authorId'] = $comment->getAuthorId();
+    $view = new View('Modification commentaire', 'comments/edit');
+    $view->render(compact('commentId'));
   }
 
   public function update($id) {

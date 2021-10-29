@@ -7,6 +7,7 @@ use App\Manager\UserManager;
 use App\Models\Post;
 use App\Core\Validation;
 use App\Core\View;
+use App\Manager\CommentManager;
 
 class PostsController extends AppController {
 
@@ -17,10 +18,28 @@ class PostsController extends AppController {
   }
   
   public function show($id) {
-    $post = PostManager::getOne($id, "Post");
-    $postId = $post->getId();
+    // Post informations
+      $post = PostManager::getOne($id, "Post");
+      $postAuthor = UserManager::getOne($post->getAuthorId(), "User");
+      $postId = $post->getId();
+      $postCreatedAt = $post->displayDateTime($post->getCreatedAt());
+
+    // Comment informations
+      $comments = CommentManager::getAllThroughObject('Comment', 'post_id', $postId);
+      $commentsAttributes = [];
+      foreach($comments as $comment) {
+        $commentAuthor = UserManager::getOne($comment->getAuthorId(), "User");
+        $commentCreatedAt = $comment->displayDateTime($comment->getCreatedAt());
+        $attributes = [
+          'comment' => $comment,
+          'commentAuthorFullname' => $commentAuthor->getFullname(),
+          'commentCreatedAt' => $commentCreatedAt
+        ];
+        array_push($commentsAttributes, $attributes);
+      };
+
     $view = new View("Article n°$postId", 'posts/show');
-    $view->render(compact('post'));
+    $view->render(compact('post', 'postAuthor', 'postCreatedAt', 'commentsAttributes'));
   }
   
   public function new() {

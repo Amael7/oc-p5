@@ -5,7 +5,7 @@ namespace App\Manager;
 class PostManager extends AppManager {
 
   /**
-   * Undocumented function
+   * function to get a post by his author
    *
    * @param integer $authorId
    * @param string $className

@@ -5,7 +5,7 @@ namespace App\Manager;
 class CommentManager extends AppManager {
 
   /**
-   * Undocumented function
+   * function to get a comment by his author
    *
    * @param integer $authorId
    * @param string $className

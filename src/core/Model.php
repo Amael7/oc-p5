@@ -36,7 +36,7 @@
      * Set the created_at value
      *
      * @param integer $created_at
-     * @return integer
+     * @return 
      */
 
     protected function setCreatedAt(string $created_at): string
@@ -47,7 +47,7 @@
     /**
      * Get the created_at value
      *
-     * @return integer
+     * @return 
      */
     public function getCreatedAt(): string
     {
@@ -58,7 +58,7 @@
      * Set the updated_at value
      *
      * @param integer $updated_at
-     * @return integer
+     * @return 
      */
 
     protected function setUpdatedAt(string $updated_at): string
@@ -74,5 +74,19 @@
     public function getUpdatedAt(): string
     {
       return $this->updated_at;
+    }
+
+    /**
+     * function to display a datetime as a string with the good format
+     *
+     * @param string $datetime
+     * @return string
+     */
+    public function displayDateTime(string $datetime) {
+      $year = substr($datetime, 0, 4);
+      $month = substr($datetime, 5, 2);
+      $day = substr($datetime, 8, 2);
+      $time = substr($datetime, 11, 8);
+      return "$day/$month/$year - $time";
     }
   }
