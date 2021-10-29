@@ -58,10 +58,24 @@ class AppManager {
    * @param array $attributes
    * @return
    */
-  public static function updateOneRow($className, $sqlColumn, $sqlColumnValue, $attributes = []) {
-    $sql = 'UPDATE ' . self::getTableName($className) . ' SET ' . $sqlColumn . ' VALUES ' . $sqlColumnValue . " WHERE id = " . $attributes['id'];
+  public static function updateOneRow($className, $postId, $attributes = []) {
+    $sql = 'UPDATE ' . self::getTableName($className) . ' SET ' . self::setAttributesByString($attributes) . " WHERE id= " . $postId;
     $result = self::dbConnect()->prepare($sql, $attributes, $className);
     return $result;
+  }
+
+  /**
+   * function to transorm an array attribute into string
+   *
+   * @param array $attributes
+   * @return string
+   */
+  private static function setAttributesByString($attributes) {
+    $set = "";
+    foreach($attributes as $key => $value) {
+      $set .= "$key = :$key,";
+    }
+    return substr($set, 0, -1);
   }
 
   /**
