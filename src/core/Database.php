@@ -49,11 +49,14 @@ class Database {
    */
   public function query($query, $class_name) {
     $req = $this->getPDO()->query($query);
+    $datas = [];
     while($data = $req->fetchObject($class_name)) {
       $datas[] = $data;
     }
-    if(count($datas) === 1 ) {
-      return $datas[0];
+    if($datas != null) {
+      if(count($datas) === 1 ) {
+        return $datas[0];
+      }
     }
     return $datas;
   }

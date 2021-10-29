@@ -19,8 +19,7 @@ class CommentsController extends AppController {
   // }
 
   public function new($id) {
-    $post = PostManager::getOne($id, "Post");
-    $postId = $post->getId();
+    $postId = $id;
     $view = new View('Nouveau commentaire', 'comments/new');
     $view->render(compact('postId'));
   }
@@ -58,8 +57,22 @@ class CommentsController extends AppController {
     $view->render(compact('postId', 'commentId'));
   }
 
-  public function update($id) {
-
+  public function update($postId, $commentId) {
+    $title = Validation::check($_POST['title']);
+    $content = Validation::check($_POST['content']);
+    // $authorId = Validation::check($_POST['authorId']); we need to fetch the user id when we'll have the admin/login system
+    $attributes = [ ':title' => $title,
+                    ':content' => $content,
+                  ];
+    $success = CommentManager::updateOneRow('Comment', $commentId, $attributes);
+    
+    if ($success === true) {
+      $_SESSION['flash']['success'] = 'Votre commentaire à bien été mis à jour.';
+      header("Location: /blog/post-$postId");
+    } else {
+      $_SESSION['flash']['danger'] = 'Impossible de mettre à jour votre commentaire.';
+      header("Location: /blog/post-$postId/comment-$commentId/edit");
+    }
   }
 
   public function destroy($id) {

@@ -68,8 +68,8 @@ class AppManager {
    * @param array $attributes
    * @return
    */
-  public static function updateOneRow($className, $postId, $attributes = []) {
-    $sql = 'UPDATE ' . self::getTableName($className) . ' SET ' . self::setAttributesByString($attributes) . " WHERE id= " . $postId;
+  public static function updateOneRow($className, $id, $attributes = []) {
+    $sql = 'UPDATE ' . self::getTableName($className) . ' SET ' . self::setAttributesByString($attributes) . " WHERE id= " . $id;
     $result = self::dbConnect()->prepare($sql, $attributes, $className);
     return $result;
   }

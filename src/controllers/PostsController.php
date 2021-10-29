@@ -27,16 +27,18 @@ class PostsController extends AppController {
     // Comment informations
       $comments = CommentManager::getAllThroughObject('Comment', 'post_id', $postId);
       $commentsAttributes = [];
-      foreach($comments as $comment) {
-        $commentAuthor = UserManager::getOne($comment->getAuthorId(), "User");
-        $commentCreatedAt = $comment->displayDateTime($comment->getCreatedAt());
-        $attributes = [
-          'comment' => $comment,
-          'commentAuthorFullname' => $commentAuthor->getFullname(),
-          'commentCreatedAt' => $commentCreatedAt
-        ];
-        array_push($commentsAttributes, $attributes);
-      };
+      if ($comments != null) {
+        foreach($comments as $comment) {
+          $commentAuthor = UserManager::getOne($comment->getAuthorId(), "User");
+          $commentCreatedAt = $comment->displayDateTime($comment->getCreatedAt());
+          $attributes = [
+            'comment' => $comment,
+            'commentAuthorFullname' => $commentAuthor->getFullname(),
+            'commentCreatedAt' => $commentCreatedAt
+          ];
+          array_push($commentsAttributes, $attributes);
+        };
+      }
 
     $view = new View("Article n°$postId", 'posts/show');
     $view->render(compact('post', 'postAuthor', 'postCreatedAt', 'commentsAttributes'));
@@ -102,10 +104,10 @@ class PostsController extends AppController {
     
     if ($success === true) {
       $_SESSION['flash']['success'] = 'Votre article à bien été mis à jour.';
-      header('Location: /blog');
+      header("Location: /blog/post-$postId");
     } else {
       $_SESSION['flash']['danger'] = 'Impossible de mettre à jour cette article.';
-      header('Location: /blog/post/edit');
+      header("Location: /blog/post-$postId/edit");
     }
   }
 
