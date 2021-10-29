@@ -42,10 +42,10 @@
     $router->post('/blog/post-:id/edit', 'PostsController#update')->with('id', '[0-9]+');
     $router->get('/blog/post-:id/delete', 'PostsController#destroy')->with('id', '[0-9]+');
     // Comment
-    $router->get('/blog/post-:id/comment/new', 'CommentsController#new');
-    $router->post('/blog/post-:id/comment/new', 'CommentsController#create');
-    $router->get('/blog/post-:id/comment-:id/edit', 'CommentsController#edit')->with('id', '[0-9]+');
-    $router->post('/blog/post-:id/comment-:id/edit', 'CommentsController#update')->with('id', '[0-9]+');
+    $router->get('/blog/post-:id/comment/new', 'CommentsController#new')->with('id', '[0-9]+');
+    $router->post('/blog/post-:id/comment/new', 'CommentsController#create')->with('id', '[0-9]+');
+    $router->get('/blog/post-:postId/comment-:commentId/edit', 'CommentsController#edit')->with('postId', '[0-9]+','commentId', '[0-9]+');
+    $router->post('/blog/post-:postId/comment-:commentId/edit', 'CommentsController#update')->with('postId', '[0-9]+','commentId', '[0-9]+');
     // 404
     $router->get('/404', 'AppController#error404'); // 
     // Run Route

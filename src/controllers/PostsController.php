@@ -63,7 +63,7 @@ class PostsController extends AppController {
     $success = PostManager::addOneRow('Post', '(title, subtitle, content, photo, author_id)', '(:title, :subtitle, :content, :photo, :author_id)', $attributes);
     
     if ($success === true) {
-      $_SESSION['flash']['success'] = 'Votre article à bien été ajouter.';
+      $_SESSION['flash']['success'] = 'Votre article à bien été ajouté.';
       header('Location: /blog');
     } else {
       $_SESSION['flash']['danger'] = 'Impossible d\'ajouter cette article.';

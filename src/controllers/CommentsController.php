@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Manager\CommentManager;
+use App\Manager\PostManager;
 use App\Models\Comment;
 use App\Core\Validation;
 use App\Core\View;
@@ -17,23 +18,44 @@ class CommentsController extends AppController {
 
   // }
 
-  public function new() {
+  public function new($id) {
+    $post = PostManager::getOne($id, "Post");
+    $postId = $post->getId();
     $view = new View('Nouveau commentaire', 'comments/new');
-    $view->render();
+    $view->render(compact('postId'));
   }
 
-  public function create() {
+  public function create($id) {
+    $postId = $id;
+    $title = Validation::check($_POST['title']);
+    $content = Validation::check($_POST['content']);
+    // $authorId = Validation::check($_POST['authorId']); we need to fetch the user id when we'll have the admin/login system
+    $attributes = [ ':title' => $title,
+                    ':content' => $content,
+                    ':author_id' => 1,
+                    ':post_id' => $postId
+                  ];
+
+    $success = CommentManager::addOneRow('Comment', '(title, content, author_id, post_id)', '(:title, :content, :author_id, :post_id)', $attributes);
     
+    if ($success === true) {
+      $_SESSION['flash']['success'] = 'Votre commentaire à bien été ajouté.';
+      header("Location: /blog/post-$postId");
+    } else {
+      $_SESSION['flash']['danger'] = 'Impossible d\'ajouter votre commentaire.';
+      header("Location: /blog/post-$postId/comment/new");
+    }
   }
 
-  public function edit($id) {
-    $comment = CommentManager::getOne($id, "Comment");
+  public function edit($id, $commentId) {
+    $comment = CommentManager::getOne($commentId, "Comment");
     $commentId = $comment->getId();
+    $postId = $comment->getPostId();
     $_POST['title'] =  $comment->getTitle();
     $_POST['content'] = $comment->getContent();
     $_POST['authorId'] = $comment->getAuthorId();
     $view = new View('Modification commentaire', 'comments/edit');
-    $view->render(compact('commentId'));
+    $view->render(compact('postId', 'commentId'));
   }
 
   public function update($id) {
