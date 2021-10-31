@@ -61,8 +61,8 @@ class CommentsController extends AppController {
     $title = Validation::check($_POST['title']);
     $content = Validation::check($_POST['content']);
     // $authorId = Validation::check($_POST['authorId']); we need to fetch the user id when we'll have the admin/login system
-    $attributes = [ ':title' => $title,
-                    ':content' => $content,
+    $attributes = [ 'title' => $title,
+                    'content' => $content,
                   ];
     $success = CommentManager::updateOneRow('Comment', $commentId, $attributes);
     
@@ -76,6 +76,14 @@ class CommentsController extends AppController {
   }
 
   public function destroy($id) {
-
+    $success = CommentManager::deleteOneRow('Comment', $id);
+    
+    if ($success === true) {
+      $_SESSION['flash']['success'] = 'Votre commentaire à bien été supprimé.';
+      header("Location: /blog/admin/comments");
+    } else {
+      $_SESSION['flash']['danger'] = 'Impossible de supprimer ce commentaire.';
+      header("Location: /blog/admin/comments");
+    }
   }
 }

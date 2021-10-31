@@ -19,10 +19,10 @@ class AppManager {
   }
 
   /**
-   * function to get all item in db where something
+   * function to get all item in db through another objectId
    *
    * @param string $className
-   * @return array
+   * @return
    */
   public static function getAllThroughObject($className, $objectName, $objectId) {
     return self::dbConnect()->query('SELECT * FROM ' . self::getTableName($className) . " WHERE $objectName = $objectId" , self::getClassName($className));

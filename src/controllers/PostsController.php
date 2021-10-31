@@ -4,10 +4,11 @@ namespace App\Controllers;
 
 use App\Manager\PostManager;
 use App\Manager\UserManager;
+use App\Manager\CommentManager;
 use App\Models\Post;
+use App\Models\Comment;
 use App\Core\Validation;
 use App\Core\View;
-use App\Manager\CommentManager;
 
 class PostsController extends AppController {
 
@@ -20,28 +21,13 @@ class PostsController extends AppController {
   public function show($id) {
     // Post informations
       $post = PostManager::getOne($id, "Post");
-      $postAuthor = UserManager::getOne($post->getAuthorId(), "User");
-      $postId = $post->getId();
-      $postCreatedAt = $post->displayDateTime($post->getCreatedAt());
 
     // Comment informations
-      $comments = CommentManager::getAllThroughObject('Comment', 'post_id', $postId);
-      $commentsAttributes = [];
-      if ($comments != null) {
-        foreach($comments as $comment) {
-          $commentAuthor = UserManager::getOne($comment->getAuthorId(), "User");
-          $commentCreatedAt = $comment->displayDateTime($comment->getCreatedAt());
-          $attributes = [
-            'comment' => $comment,
-            'commentAuthorFullname' => $commentAuthor->getFullname(),
-            'commentCreatedAt' => $commentCreatedAt
-          ];
-          array_push($commentsAttributes, $attributes);
-        };
-      }
+      $commentsResult = CommentManager::getAllThroughObject('Comment', 'post_id', $id);
+      $comments = Comment::displayComments($commentsResult);
 
-    $view = new View("Article n°$postId", 'posts/show');
-    $view->render(compact('post', 'postAuthor', 'postCreatedAt', 'commentsAttributes'));
+    $view = new View("Article n°$id", 'posts/show');
+    $view->render(compact('post', 'comments'));
   }
   
   public function new() {

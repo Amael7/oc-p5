@@ -1,4 +1,4 @@
-<?php if(isset($posts) == []): ?>
+<?php if(isset($posts) && $posts == []): ?>
   <h2>Aucun Articles</h2>
   <?php else: ?>
     <a href="/blog/post/new">Créer un nouvelle article</a>

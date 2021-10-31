@@ -137,4 +137,14 @@
     public function id() {
         return $this->getId();
     }
+
+    /**
+     * get the author fullname
+     *
+     * @return string
+     */
+    public function getAuthorName()
+    {
+        return \App\Manager\UserManager::getOne($this->author_id, "User")->getFullname();
+    }
   }

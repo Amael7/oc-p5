@@ -32,7 +32,7 @@
     $router->get('/blog/admin/post-:id', 'UsersController#adminPostShow')->with('id', '[0-9]+');
     $router->get('/blog/admin/comments', 'CommentsController#index');    
     $router->post('/blog/admin/comments-:id/valide', 'CommentsController#valide')->with('id', '[0-9]+');    
-    $router->post('/blog/admin/comments-:id/delete', 'CommentsController#destroy')->with('id', '[0-9]+');       
+    $router->get('/blog/admin/comments-:id/delete', 'CommentsController#destroy')->with('id', '[0-9]+');       
     // Post
     $router->get('/blog', 'PostsController#index');
     $router->get('/blog/post-:id', 'PostsController#show')->with('id', '[0-9]+');
