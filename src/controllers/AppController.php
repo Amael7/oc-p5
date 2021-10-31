@@ -2,18 +2,49 @@
 
 namespace App\Controllers;
 
-use App\Core\Controller;
+use \App\Core\Controller;
+use \App\Core\View;
 
 class AppController extends Controller {
-
-  function home()
+  
+  /**
+   * function to render the home page view
+   *
+   * @return View
+   */
+  public function home()
   {
-    require('public/views/application/home.php');
+    $view = new View('Acceuil', 'application/home');
+    $view->render();
   }
 
-  function errorPage404()
-  {
-    require('public/views/application/page404.php');
+  /**
+   * function to send the contact form through the Post method
+   *
+   * @return 
+   */
+  public function contact() {
+    
   }
 
+  /**
+   * function to render the error 404 page view
+   *
+   * @return View
+   */
+  public function error404()
+  {
+    $view = new View('Page Introuvable', 'errors/404');
+    $view->render();
+  }
+
+  /**
+   * function to render the C.V page view
+   *
+   * @return View
+   */
+  public function cv() {
+    $view = new View('Mon C.V', 'application/cv');
+    $view->render();
+  }
 }

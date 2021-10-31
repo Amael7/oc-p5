@@ -17,7 +17,7 @@
     /**
      * Get the title
      *
-     * @return void
+     * @return string
      */
     public function getTitle()
     {
@@ -28,7 +28,7 @@
      * Set the title
      *
      * @param string $title
-     * @return void
+     * @return string
      */
     public function setTitle(string $title)
     {
@@ -40,7 +40,7 @@
     /**
      * Get the subtitle
      *
-     * @return void
+     * @return string
      */
     public function getSubtitle()
     {
@@ -51,7 +51,7 @@
      * Set the subtitle
      *
      * @param string $subtitle
-     * @return void
+     * @return string
      */
     public function setSubtitle(string $subtitle)
     {
@@ -63,7 +63,7 @@
     /**
      * get the content
      *
-     * @return void
+     * @return string
      */
     public function getContent()
     {
@@ -74,7 +74,7 @@
      * set the content
      *
      * @param string $content
-     * @return void
+     * @return string
      */
     public function setContent(string $content)
     {
@@ -84,9 +84,32 @@
     }
 
     /**
+     * get the photo
+     *
+     * @return string
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * set the photo
+     *
+     * @param string $photo
+     * @return string
+     */
+    public function setPhoto(string $photo)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
      * get the author_id
      *
-     * @return void
+     * @return integer
      */
     public function getAuthorId()
     {
@@ -97,12 +120,31 @@
      * set the author_id
      *
      * @param integer $author_id
-     * @return void
+     * @return integer
      */
     public function setAuthorId($author_id)
     {
         $this->author_id = $author_id;
 
         return $this;
+    }
+
+    /**
+     * function to display the id with the parent protected method getId()
+     *
+     * @return int
+     */
+    public function id() {
+        return $this->getId();
+    }
+
+    /**
+     * get the author fullname
+     *
+     * @return string
+     */
+    public function getAuthorName()
+    {
+        return \App\Manager\UserManager::getOne($this->author_id, "User")->getFullname();
     }
   }

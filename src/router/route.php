@@ -13,8 +13,8 @@
     /**
      * method called when we create an instance of Route who 
      *
-     * @param [type] $path
-     * @param [type] $callable
+     * @param string $path
+     * @param string $callable
      */
     public function __construct($path, $callable)
     {
@@ -25,9 +25,9 @@
     /**
      *  function to give params when we call a route in the router.rb
      *
-     * @param [type] $param
-     * @param [type] $regex
-     * @return void
+     * @param array $param
+     * @param string $regex
+     * @return Router
      */
     public function with($param, $regex)
     {
@@ -39,7 +39,7 @@
     /**
      * Function who return true if the url has matched
      *
-     * @param [type] $url
+     * @param string $url
      * @return void
      */
     public function match($url)
@@ -59,7 +59,7 @@
     /**
      * function who return the params matched
      *
-     * @param [type] $match
+     * @param array $match
      * @return void
      */
     private function paramMatch($match)
@@ -93,7 +93,7 @@
     /**
      * function to get the Url
      *
-     * @param [type] $params
+     * @param array $params
      * @return void
      */
     public function getUrl($params)

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $title ?></title>
-    <link href="public/assets/stylesheets/style.css" rel="stylesheet" /> 
+    <link href="/public/assets/stylesheets/style.css" rel="stylesheet" /> 
   </head>
   <body>
     <div class="header-navbar-container">
@@ -14,11 +14,11 @@
       </div>
       <div class="navbar-menu-container">
         <ul id="list-navbar-menu">
-          <li><a href="#">Accueil</a></li>
-          <li><a href="#">Articles</a></li>
-          <li><a href="#">Inscription</a></li>
-          <li><a href="#">Connexion</a></li>
-          <li><a href="#">Déconnexion</a></li>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/blog">Articles</a></li>
+          <li><a href="/connection">Inscription</a></li>
+          <li><a href="/registration">Connexion</a></li>
+          <li><a href="/logout">Déconnexion</a></li>
         </ul>
       </div> 
     </div>

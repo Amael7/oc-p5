@@ -44,16 +44,19 @@ class Database {
   /**
    * function to give an sql query 
    *
-   * @param [type] $query
+   * @param string $query
    * @return object
    */
   public function query($query, $class_name) {
     $req = $this->getPDO()->query($query);
+    $datas = [];
     while($data = $req->fetchObject($class_name)) {
       $datas[] = $data;
     }
-    if(count($datas) === 1 ) {
-      return $datas[0];
+    if($datas != null) {
+      if(count($datas) === 1 ) {
+        return $datas[0];
+      }
     }
     return $datas;
   }
@@ -61,18 +64,19 @@ class Database {
   /**
    * function to call an sql request with attributes and protected from sql injection
    *
-   * @param [type] $query
-   * @param [type] $attributes
-   * @param [type] $class_name
-   * @return void
+   * @param string $query
+   * @param array $attributes
+   * @param string $class_name
+   * @param string $fetch
+   * @return 
    */
-  public function prepare($query, $attributes, $class_name, $one = false) {
+  public function prepare($query, $attributes, $class_name, $fetch = false) {
     $req = $this->getPDO()->prepare($query);
-    $req->execute($attributes);
+    $datas = $req->execute($attributes);
     $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
-    if($one) {
+    if($fetch === 'one') {
       $datas = $req->fetch();
-    } else {
+    } elseif($fetch === 'all') {
       $datas = $req->fetchAll();
     }
     return $datas;

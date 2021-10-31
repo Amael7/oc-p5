@@ -1,16 +1,9 @@
-<?php
-
-use App\Manager\AppManager;
-
-$title = 'Mon blog'; ?>
-
-<?php ob_start(); ?>
   <div class="main-title">
     <h1>Mon premier blog en PhP!</h1>
   </div>  
   <div class="home-container">
     
-    <img src="public/assets/images/pp.jpg" alt="Photo de Profil" style="width: 350px; height: 400px;">
+    <img src="/public/assets/images/pp.jpg" alt="Photo de Profil" style="width: 350px; height: 400px;">
     
     <div class="my-infos">
       
@@ -21,8 +14,8 @@ $title = 'Mon blog'; ?>
         reconvertis en Développeur web depuis octobre 2019 !
       </p>
       
-      <a href="public/assets/pdf/cv.pdf" target="blank">Voici mon C.V</a>
-      
+      <a href="/public/assets/pdf/cv.pdf" target="blank">Voici mon C.V</a>
+      <a href="/cv" target="blank">Voici mon C.V</a>
       <div class="social_link">
         <h3>Mes Réseaux sociaux</h3>
         <ul>
@@ -35,11 +28,5 @@ $title = 'Mon blog'; ?>
   </div>
   
   <div class="contact-form">
-    <?php // require('app/views/forms/contact_form.php'); ?>
-    <p>le formulaire de contact est à venir !</p>
+    <?php require('public/views/partials/forms/contactForm.php'); ?>
   </div>
-  
-<?php $content = ob_get_clean(); ?>
-
-
-<?php require('public/views/template/default.php'); ?>
