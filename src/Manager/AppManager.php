@@ -103,6 +103,21 @@ class AppManager {
   }
 
   /**
+   * Function to destroy all row in the Database who are in relation with an item
+   * example : PostManager::deleteAllRowThroughItem('Comment', 'post_id', $id);
+   *
+   * @param string $className
+   * @param string $objectcolumn
+   * @param integer $id
+   * @return
+   */
+  public static function deleteAllRowThroughItem($className, $objectcolumn, $id) {
+    $sql = 'DELETE FROM ' . self::getTableName($className) . ' WHERE ' . $objectcolumn . ' = ' . $id;
+    $result = self::dbConnect()->prepare($sql, [$id], $className);
+    return $result;
+  }
+
+  /**
    * function to connect to the Database
    *
    * @return object

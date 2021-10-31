@@ -98,6 +98,7 @@ class PostsController extends AppController {
   }
 
   public function destroy($id) {
+    $successObj = CommentManager::deleteAllRowThroughItem('Comment', 'post_id', $id);
     $success = PostManager::deleteOneRow('Post', $id);
 
     if ($success === true) {
