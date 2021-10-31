@@ -30,9 +30,10 @@
     // Admin
     $router->get('/blog/admin/dashboard', 'UsersController#adminDashboard');    
     $router->get('/blog/admin/post-:id', 'UsersController#adminPostShow')->with('id', '[0-9]+');
+    $router->get('/blog/admin/post-:postId/comment-:commentId/delete', 'CommentsController#destroy')->with('postId', '[0-9]+','commentId', '[0-9]+');     
     $router->get('/blog/admin/comments', 'CommentsController#index');    
-    $router->post('/blog/admin/comments-:id/valide', 'CommentsController#valide')->with('id', '[0-9]+');    
-    $router->get('/blog/admin/comments-:id/delete', 'CommentsController#destroy')->with('id', '[0-9]+');       
+    $router->post('/blog/admin/comments/comment-:id/valide', 'CommentsController#valide')->with('id', '[0-9]+');    
+    $router->get('/blog/admin/comments/comment-:id/delete', 'CommentsController#destroy')->with('id', '[0-9]+');       
     // Post
     $router->get('/blog', 'PostsController#index');
     $router->get('/blog/post-:id', 'PostsController#show')->with('id', '[0-9]+');
