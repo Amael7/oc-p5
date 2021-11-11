@@ -10,14 +10,6 @@ use App\Core\View;
 
 class CommentsController extends AppController {
 
-  // public function index() {
-
-  // }
-
-  // public function show($id) {
-
-  // }
-
   public function new($id) {
     $postId = $id;
     $view = new View('Nouveau commentaire', 'comments/new');
