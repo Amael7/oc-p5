@@ -7,7 +7,7 @@
     <input type="text" name="subTitle" id="subTitle" placeholder="Sous-titre" required="required" value="<?= $_POST['subTitle']?? "" ?>">
     
     <label for="content">Contenu</label>
-    <textarea name="content" id="content" cols="15" rows="3" required="required"><?= $_POST['content']?? "" ?></textarea>
+    <textarea name="content" id="content" cols="15" rows="3" placeholder="Contenu" required="required"><?= $_POST['content']?? "" ?></textarea>
     
     <label for="photo">Photo</label>
     <input type="text" name="photo" id="photo" placeholder="Photo" required="required" value="<?= $_POST['photo']?? "" ?>">

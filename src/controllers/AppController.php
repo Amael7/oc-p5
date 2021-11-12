@@ -18,14 +18,32 @@ class AppController extends Controller {
     $view->render();
   }
 
-  /**
-   * function to send the contact form through the Post method
-   *
-   * @return 
-   */
-  public function contact() {
+  // /**
+  //  * function to send the contact form through the Post method
+  //  *
+  //  * @return 
+  //  */
+  // public function contact() {
     
+  // }
+
+  /**
+   * function to render the connection View (where we can login or choose to create a new account)
+   *
+   * @return
+   */
+  public function connectionView() {
+    $view = new View('Page de connexion', 'application/connectionView');
+    $view->render();
   }
+
+  // public function login() {
+
+  // }
+
+  // public function logout() {
+
+  // }
 
   /**
    * function to render the error 404 page view

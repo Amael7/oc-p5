@@ -16,8 +16,8 @@
         <ul id="list-navbar-menu">
           <li><a href="/">Accueil</a></li>
           <li><a href="/blog">Articles</a></li>
-          <li><a href="/connection">Inscription</a></li>
-          <li><a href="/registration">Connexion</a></li>
+          <li><a href="/connection">Connexion</a></li>
+          <li><a href="/registration">Inscription</a></li>
           <li><a href="/logout">Déconnexion</a></li>
         </ul>
       </div> 
