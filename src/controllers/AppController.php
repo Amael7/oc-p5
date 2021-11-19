@@ -47,11 +47,11 @@ class AppController extends Controller {
   public function login() {
     $email = Validation::check($_POST['email']);
     $password = Validation::check($_POST['password']);
-    $hash = password_hash($password, PASSWORD_DEFAULT);
+    $hashPassword = password_hash($password, PASSWORD_DEFAULT);
     // $password = password_verify($password, $hash);
     
     $success_email = UserManager::checkUserByAttribute([':email' => "'$email'"], 'email');
-    $success_password = UserManager::checkUserByAttribute([':password' => "'$hash'"], 'password');
+    $success_password = UserManager::checkUserByAttribute([':password' => "'$hashPassword'"], 'password');
     
     if ($success_email && $success_password) {
       $user = UserManager::getUserByEmailAndPassword($email, $password, 'User');

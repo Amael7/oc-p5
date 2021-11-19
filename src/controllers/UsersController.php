@@ -14,9 +14,33 @@ class UsersController extends AppController {
     $view->render();
   }
   
-  // public function create() {
-    
-  // }
+  public function create() {
+    $email = Validation::check($_POST['email']);
+    $password = Validation::check($_POST['password']);
+    $passwordCheck = Validation::check($_POST['passwordCheck']);
+
+    if ($password === $passwordCheck) {
+      $hashPassword = password_hash($password, PASSWORD_DEFAULT);
+
+      $attributes = [ ':email' => $email,
+                      ':password' => $hashPassword,
+                      ':first_name' => '',
+                      ':last_name' => '',
+                      ':description' => '',
+                    ];
+      $success = UserManager::addOneRow('User', '(email, password, first_name, last_name, description)', '(:email, :password, :first_name, :last_name, :description)', $attributes);
+    } else {
+      $success = false;
+    }
+
+    if ($success === true) {
+      $_SESSION['flash']['success'] = 'Création de compte validé.';
+      header('Location: /connection');
+    } else {
+      $_SESSION['flash']['danger'] = "Le formulaire d'inscription n'est pas valide.";
+      header('Location: /registration');
+    }
+  }
 
   public function show($id) {
     $user = UserManager::getOne($id, "User");
@@ -37,9 +61,38 @@ class UsersController extends AppController {
     $view->render(compact('user'));
   }
 
-  // public function update($id) {
+  public function update($id) {
+    $user = UserManager::getOne($id, "User");
+    $userId = $user->getId();
+    $email = Validation::check($_POST['email']);
+    $password = Validation::check($_POST['password']);
+    $passwordCheck = Validation::check($_POST['passwordCheck']);
+    $firstName = Validation::check($_POST['firstName']);
+    $lastName = Validation::check($_POST['lastName']);
+    $description = Validation::check($_POST['description']);
 
-  // }
+    if ($password === $passwordCheck) {
+      $hashPassword = password_hash($password, PASSWORD_DEFAULT);
+      dump('beifsfn');
+      $attributes = [ ':email' => $email,
+                      ':password' => $hashPassword,
+                      ':first_name' => $firstName,
+                      ':last_name' => $lastName,
+                      ':description' => $description,
+                    ];
+      $success = UserManager::updateOneRow('User', '(email, password, first_name, last_name, description)', '(:email, :password, :first_name, :last_name, :description)', $attributes);
+    } else {
+      $success = false;
+    }
+
+    if ($success === true) {
+      $_SESSION['flash']['success'] = 'Le compte à bien été modifié.';
+      header("Location: /blog/user-$userId/show");
+    } else {
+      $_SESSION['flash']['danger'] = "Un ou plusieurs des champs n'est pas valide.";
+      header("Location: /blog/user-$userId/edit");
+    }
+  }
 
   // public function adminDashboard() {
   //   // $this->render('admin/adminDashboard');

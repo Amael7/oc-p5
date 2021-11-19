@@ -5,7 +5,7 @@
 <?php endif; ?>
 <div class="form-section"> 
 
-  <form action="/blog/<?= ($_POST == []) ? "/registration" : '/blog/user-' . $user->getId() . '/edit' ?>" method="post">
+  <form action="<?= ($_POST == []) ? "/registration" : '/blog/user-' . $user->getId() . '/edit' ?>" method="post">
     <?php if (isset($_SESSION['user_auth'])): ?>
       <label for="first_name">Prénom</label>
       <input type="text" name="first_name" id="first_name" placeholder="Prénom" required="required" value="<?= ($_POST["firstName"])?? "" ?>">
@@ -20,8 +20,8 @@
     <label for="password">Mot de passe</label>
     <input type="password" name="password" id="password" placeholder="Mot de passe" required="required">
 
-    <label for="password">Confirmer mot de passe</label>
-    <input type="password" name="password" id="password" placeholder="Confirmer mot de passe" required="required">
+    <label for="passwordCheck">Confirmer mot de passe</label>
+    <input type="password" name="passwordCheck" id="passwordCheck" placeholder="Confirmer mot de passe" required="required">
 
     <?php if (isset($_SESSION['user_auth'])): ?>
       <label for="description">Description</label>
