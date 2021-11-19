@@ -1,1 +1,1 @@
-show
+<h1>profil du user</h1>

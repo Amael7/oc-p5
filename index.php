@@ -22,11 +22,12 @@
     $router->get('/cv', 'AppController#cv');
     $router->get('/connection', 'AppController#connectionView');
     $router->post('/login', 'AppController#login');
-    $router->post('/logout', 'AppController#logout');
+    $router->get('/logout', 'AppController#logout');
     // $router->post('/contact', 'AppController#contact');
     // User
     $router->get('/registration', 'UsersController#new');
     $router->post('/registration', 'UsersController#create');
+    $router->get('/blog/user-:id/show', 'UsersController#show')->with('id', '[0-9]+');
     $router->get('/blog/user-:id/edit', 'UsersController#edit')->with('id', '[0-9]+');
     // Admin
     // $router->get('/blog/admin/dashboard', 'UsersController#adminDashboard');    

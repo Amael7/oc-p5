@@ -11,10 +11,10 @@
     <input type="text" name="email" id="email" placeholder="Email" required="required">
     
     <label for="password">Mot de passe</label>
-    <input type="text" name="password" id="password" placeholder="Mot de passe" required="required">
+    <input type="password" name="password" id="password" placeholder="Mot de passe" required="required">
 
     <label for="password">Confirmer mot de passe</label>
-    <input type="text" name="password" id="password" placeholder="Confirmer mot de passe" required="required">
+    <input type="password" name="password" id="password" placeholder="Confirmer mot de passe" required="required">
 
     <label for="description">Description</label>
     <textarea name="description" id="description" cols="15" rows="3" placeholder="Description" required="required"></textarea>

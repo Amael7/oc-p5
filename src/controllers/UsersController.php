@@ -18,11 +18,11 @@ class UsersController extends AppController {
     
   // }
 
-  // public function show($id) {
-  //   // chercher le user
-  //   // $view = new View('Mon profil', 'users/show');
-  //   // $view->render();
-  // }
+  public function show($id) {
+    // chercher le user
+    $view = new View('Mon profil', 'users/show');
+    $view->render();
+  }
   
   public function edit($id) {
     // chercher le user

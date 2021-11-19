@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use \App\Core\Controller;
 use \App\Core\View;
+use App\Manager\UserManager;
+use App\Core\Validation;
 
 class AppController extends Controller {
   
@@ -37,13 +39,46 @@ class AppController extends Controller {
     $view->render();
   }
 
-  // public function login() {
+  /**
+   * function to login the user
+   *
+   * @return
+   */
+  public function login() {
+    $email = Validation::check($_POST['email']);
+    $password = Validation::check($_POST['password']);
+    $hash = password_hash($password, PASSWORD_DEFAULT);
+    // $password = password_verify($password, $hash);
+    
+    $success_email = UserManager::checkUserByAttribute([':email' => "'$email'"], 'email');
+    $success_password = UserManager::checkUserByAttribute([':password' => "'$hash'"], 'password');
+    
+    if ($success_email && $success_password) {
+      $user = UserManager::getUserByEmailAndPassword($email, $password, 'User');
+      $_SESSION['user_auth'] = $user->id();
+      $_SESSION['flash']['success'] = 'Connexion réussi.';
+      header("Location: /blog");
+    } else {
+      $_SESSION['flash']['danger'] = 'Aucun utilisateurs trouvé.';
+      header("Location: /login");
+    }
+  }
 
-  // }
+  /**
+   * function to logout the user
+   *
+   * @return
+   */
+  public function logout() {
+    if (session_status() == PHP_SESSION_NONE) {
+      session_start();
+    }
 
-  // public function logout() {
+    $_SESSION = array();
+    session_destroy();
 
-  // }
+    header('Location: /connection');
+  }
 
   /**
    * function to render the error 404 page view

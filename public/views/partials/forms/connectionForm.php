@@ -6,9 +6,9 @@
     <input type="text" name="email" id="email" placeholder="Email" required="required">
     
     <label for="password">Mot de passe</label>
-    <input type="text" name="password" id="password" placeholder="Mot de passe" required="required">
+    <input type="password" name="password" id="password" placeholder="Mot de passe" required="required">
     
-    <button type="submit" name="login">Connexion</button>
+    <button type="submit">Connexion</button>
   </form>
 </div>
 <a href="/registration">Créer un compte</a>
