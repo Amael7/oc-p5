@@ -64,28 +64,29 @@ class UsersController extends AppController {
   public function update($id) {
     $user = UserManager::getOne($id, "User");
     $userId = $user->getId();
+
     $email = Validation::check($_POST['email']);
-    $password = Validation::check($_POST['password']);
-    $passwordCheck = Validation::check($_POST['passwordCheck']);
+    // $password = Validation::check($_POST['password']);
+    // $passwordCheck = Validation::check($_POST['passwordCheck']);
+
     $firstName = Validation::check($_POST['firstName']);
     $lastName = Validation::check($_POST['lastName']);
     $description = Validation::check($_POST['description']);
-
-    if ($password === $passwordCheck) {
-      $hashPassword = password_hash($password, PASSWORD_DEFAULT);
-      dump('beifsfn');
-      $attributes = [ ':email' => $email,
-                      ':password' => $hashPassword,
-                      ':first_name' => $firstName,
-                      ':last_name' => $lastName,
-                      ':description' => $description,
-                    ];
-      $success = UserManager::updateOneRow('User', '(email, password, first_name, last_name, description)', '(:email, :password, :first_name, :last_name, :description)', $attributes);
-    } else {
-      $success = false;
-    }
-
-    if ($success === true) {
+    
+    // if ($password === $passwordCheck) {
+    //   $hashPassword = password_verify($password, $user->getPassword());
+      // if ($hashPassword) {
+        
+        $attributes = [ 'email' => $email,
+                        'first_name' => $firstName,
+                        'last_name' => $lastName,
+                        'description' => $description,
+                      ];
+        $success = UserManager::updateOneRow('User', $userId, $attributes);
+      // } 
+      // }
+      
+    if ($success) {
       $_SESSION['flash']['success'] = 'Le compte à bien été modifié.';
       header("Location: /blog/user-$userId/show");
     } else {

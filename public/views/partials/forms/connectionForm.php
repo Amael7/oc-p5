@@ -10,5 +10,6 @@
     
     <button type="submit">Connexion</button>
   </form>
+  <?= ($_SESSION['flash']['danger'])?? null; ?>
 </div>
 <a href="/registration">Créer un compte</a>

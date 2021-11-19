@@ -47,20 +47,24 @@ class AppController extends Controller {
   public function login() {
     $email = Validation::check($_POST['email']);
     $password = Validation::check($_POST['password']);
-    $hashPassword = password_hash($password, PASSWORD_DEFAULT);
-    // $password = password_verify($password, $hash);
     
-    $success_email = UserManager::checkUserByAttribute([':email' => "'$email'"], 'email');
-    $success_password = UserManager::checkUserByAttribute([':password' => "'$hashPassword'"], 'password');
+    $successEmail = UserManager::checkUserByAttribute($email, 'email');
     
-    if ($success_email && $success_password) {
-      $user = UserManager::getUserByEmailAndPassword($email, $password, 'User');
-      $_SESSION['user_auth'] = $user->getId();
-      $_SESSION['flash']['success'] = 'Connexion réussi.';
-      header("Location: /blog");
+    if ($successEmail) {
+      $user = UserManager::getUserByEmail($email, 'User');
+      $hashPassword = $user->getPassword();
+      $successPassword = password_verify($password, $hashPassword);
+      if ($successPassword) {
+        $_SESSION['user_auth'] = $user->getId();
+        $_SESSION['flash']['success'] = 'Connexion réussi.';
+        header("Location: /blog");
+      } else {
+        $_SESSION['flash']['danger'] = 'Aucun utilisateurs trouvé.';
+        header("Location: /connection");
+      }
     } else {
       $_SESSION['flash']['danger'] = 'Aucun utilisateurs trouvé.';
-      header("Location: /login");
+      header("Location: /connection");
     }
   }
 
