@@ -55,7 +55,7 @@ class AppController extends Controller {
     
     if ($success_email && $success_password) {
       $user = UserManager::getUserByEmailAndPassword($email, $password, 'User');
-      $_SESSION['user_auth'] = $user->id();
+      $_SESSION['user_auth'] = $user->getId();
       $_SESSION['flash']['success'] = 'Connexion réussi.';
       header("Location: /blog");
     } else {

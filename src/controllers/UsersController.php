@@ -19,15 +19,22 @@ class UsersController extends AppController {
   // }
 
   public function show($id) {
-    // chercher le user
+    $user = UserManager::getOne($id, "User");
+
     $view = new View('Mon profil', 'users/show');
-    $view->render();
+    $view->render(compact('user'));
   }
   
   public function edit($id) {
-    // chercher le user
+    $user = UserManager::getOne($id, "User");
+
+    $_POST['firstName'] =  $user->getFirstName();
+    $_POST['lastName'] = $user->getLastName();
+    $_POST['email'] = $user->getEmail();
+    $_POST['description'] = $user->getDescription();
+
     $view = new View('Modification de compte', 'users/edit');
-    $view->render();
+    $view->render(compact('user'));
   }
 
   // public function update($id) {

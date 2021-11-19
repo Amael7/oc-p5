@@ -29,6 +29,7 @@
     $router->post('/registration', 'UsersController#create');
     $router->get('/blog/user-:id/show', 'UsersController#show')->with('id', '[0-9]+');
     $router->get('/blog/user-:id/edit', 'UsersController#edit')->with('id', '[0-9]+');
+    $router->post('/blog/user-:id/edit', 'UsersController#update')->with('id', '[0-9]+');
     // Admin
     // $router->get('/blog/admin/dashboard', 'UsersController#adminDashboard');    
     // $router->get('/blog/admin/post-:id', 'UsersController#adminPostShow')->with('id', '[0-9]+');
