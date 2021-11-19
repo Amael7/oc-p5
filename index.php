@@ -21,6 +21,10 @@
     $router->get('/', 'AppController#home');
     $router->get('/cv', 'AppController#cv');
     $router->get('/connection', 'AppController#connectionView');
+    $router->get('/emailRecoveryView', 'AppController#emailRecoveryView');
+    $router->post('/sendEmailPasswordRecovery', 'AppController#sendEmailPasswordRecovery');
+    $router->get('/passwordRecovery', 'AppController#passwordFormView');
+    $router->post('/passwordRecovery', 'AppController#passwordUpdate');
     $router->post('/login', 'AppController#login');
     $router->get('/logout', 'AppController#logout');
     // $router->post('/contact', 'AppController#contact');

@@ -11,14 +11,6 @@
     
     <label for="email">Email</label>
     <input type="text" name="email" id="email" placeholder="Email" required="required" value="<?= ($_POST["email"])?? "" ?>">
-    
-    <?php if (isset($_SESSION['mdp'])): ?>
-      <label for="password">Mot de passe</label>
-      <input type="password" name="password" id="password" placeholder="Mot de passe" required="required">
-
-      <label for="passwordCheck">Confirmer mot de passe</label>
-      <input type="password" name="passwordCheck" id="passwordCheck" placeholder="Confirmer mot de passe" required="required">
-    <?php endif; ?>
 
     <?php if (isset($_SESSION['user_auth'])): ?>
       <label for="description">Description</label>

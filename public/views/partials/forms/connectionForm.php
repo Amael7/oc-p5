@@ -13,3 +13,4 @@
   <?= ($_SESSION['flash']['danger'])?? null; ?>
 </div>
 <a href="/registration">Créer un compte</a>
+<a href="/emailRecoveryView">Mot de passe oublié</a>
