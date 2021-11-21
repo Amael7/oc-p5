@@ -10,7 +10,4 @@
   <?php if (isset($_SESSION['emailRecoverySend'])): ?>
     <h2>Email Envoyé</h2>
   <?php endif; ?>
-
-  <?= ($_SESSION['flash']['success'])?? null; ?>
-  <?= ($_SESSION['flash']['danger'])?? null; ?>
 </div>
