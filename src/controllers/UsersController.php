@@ -42,15 +42,14 @@ class UsersController extends AppController {
     }
   }
 
-  public function show($id) {
-    $user = UserManager::getOne($id, "User");
-
+  public function show() {
+    $user = UserManager::getOne($_SESSION['user_auth'], "User");
     $view = new View('Mon profil', 'users/show');
     $view->render(compact('user'));
   }
   
-  public function edit($id) {
-    $user = UserManager::getOne($id, "User");
+  public function edit() {
+    $user = UserManager::getOne($_SESSION['user_auth'], "User");
 
     $_POST['firstName'] =  $user->getFirstName();
     $_POST['lastName'] = $user->getLastName();
@@ -61,9 +60,8 @@ class UsersController extends AppController {
     $view->render(compact('user'));
   }
 
-  public function update($id) {
-    $user = UserManager::getOne($id, "User");
-    $userId = $user->getId();
+  public function update() {
+    $user = UserManager::getOne($_SESSION['user_auth'], "User");
 
     $email = Validation::check($_POST['email']);
 
@@ -76,14 +74,14 @@ class UsersController extends AppController {
                     'last_name' => $lastName,
                     'description' => $description,
                   ];
-    $success = UserManager::updateOneRow('User', $userId, $attributes);
+    $success = UserManager::updateOneRow('User', $user->getId(), $attributes);
       
     if ($success) {
       $_SESSION['flash']['success'] = 'Le compte à bien été modifié.';
-      header("Location: /blog/user-$userId/show");
+      header("Location: /user/show");
     } else {
       $_SESSION['flash']['danger'] = "Un ou plusieurs des champs n'est pas valide.";
-      header("Location: /blog/user-$userId/edit");
+      header("Location: /user/edit");
     }
   }
 

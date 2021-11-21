@@ -7,7 +7,7 @@
     <button type="submit">Envoyer</button>
   </form>
 
-  <?php if ($_SESSION['emailRecoverySend'] === true): ?>
+  <?php if (isset($_SESSION['emailRecoverySend'])): ?>
     <h2>Email Envoyé</h2>
   <?php endif; ?>
 

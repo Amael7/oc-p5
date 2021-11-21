@@ -9,6 +9,4 @@
 
     <button type="submit">Envoyer</button>
   </form>
-  <?= ($_SESSION['flash']['success'])?? null; ?>
-  <?= ($_SESSION['flash']['danger'])?? null; ?>
 </div>

@@ -17,7 +17,7 @@
           <li><a href="/">Accueil</a></li>
           <li><a href="/blog">Articles</a></li>
           <?php if (isset($_SESSION['user_auth'])): ?>
-              <li><a href=<?= '/blog/user-' . $_SESSION['user_auth'] . '/show' ?> >Mon profil</a></li>
+              <li><a href=<?= '/user/show' ?> >Mon profil</a></li>
               <li><a href="/logout">Déconnexion</a></li>
             <?php else: ?>
               <li><a href="/connection">Connexion</a></li>
