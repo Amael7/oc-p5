@@ -20,14 +20,51 @@ class AppController extends Controller {
     $view->render();
   }
 
-  // /**
-  //  * function to send the contact form through the Post method
-  //  *
-  //  * @return 
-  //  */
-  // public function contact() {
+  /**
+   * function to send an email through the contact form
+   *
+   * @return 
+   */
+  public function contactForm() {
+    $visitorName = Validation::check($_POST["visitorName"]);
+    $visitorEmail = Validation::check($_POST["visitorEmail"]);
+    $mail_object = Validation::check($_POST["mailObject"]);
+    $message = Validation::check($_POST["message"]);
     
-  // }
+    $emailBody = "<div>
+                    <div>
+                      <label><b>Objet du mail:<b></label>&nbsp;<span>" . $mail_object . "</span>
+                    </div>
+                    
+                    <div>
+                      <label><b>Nom du visiteur:<b></label>&nbsp;<span>" . $visitorName . "</span>
+                    </div>
+                    
+                    <div>
+                      <label><b>Email du visiteur:<b></label>&nbsp;<span>" . $visitorEmail . "</span>
+                    </div>
+                    
+                    <div>
+                      <label><b>Message du visiteur:<b></label>
+                      <div>" . $message . "</div>
+                    </div>
+                  </div>";
+
+    $headers = 'MIME-Version: 1.0' . "\r\n"
+              . 'Content-type: text/html; charset=utf-8' . "\r\n"
+              . 'From: ' . $visitorEmail . "\r\n";
+
+    $successEmail = mail("stephane.montoro@hotmail.com", $mail_object, $emailBody, $headers);
+
+    if ($successEmail) {
+      $_SESSION['contactFormSend'] = true;
+      $_SESSION['flash']['success'] = 'Email envoyé.';
+      header("Location: /");
+    } else {
+      $_SESSION['flash']['danger'] = "Echec de l'envoie d'email.";
+      header("Location: /");
+    } 
+  } 
 
   /**
    * function to render the connection View (where we can login or choose to create a new account)
@@ -86,12 +123,32 @@ class AppController extends Controller {
   public function sendEmailPasswordRecovery() {
     $email = Validation::check($_POST['email']);
     $successEmail = UserManager::checkUserByAttribute($email, 'email');
+    $user = UserManager::getUserByEmail($email, 'User');
+    $emailObject = "Renouvellement de mot de passe";
+    $emailBody = "<div>
+                    <div>
+                      <p>Bonjour" . $user->getFullname() . ", </p>&nbsp;
+                    </div>
+
+                    <div>
+                      <p><b>Vous avez effectué une demande de mot de passe oublié.<b></p>&nbsp;
+                    </div>
+                    
+                    <div>
+                      <p><b>Voici le lien de renouvellement de mot de passe :<b></p>&nbsp;
+                    </div>
+                    
+                    <div>
+                      <a href='localhost/passwordRecovery'>Créer un nouveau mot de passe</a>
+                    </div>
+                  </div>";
+    
+    $headers = 'MIME-Version: 1.0' . "\r\n"
+    . 'Content-type: text/html; charset=utf-8' . "\r\n"
+    . 'From: stephane.montoro@hotmail.com' . "\r\n";
+
     if ($successEmail) {
-      $successMail = mail(
-        $email, 
-        "Renouvellement de mot de passe", 
-        "Voici un mail de renouvellement de mot de passe pour le blog, veuillez cliquer sur le lien : <a href='localhost/passwordRecovery'>Créer un nouveau mot de passe</a>  "
-      );
+      $successMail = mail($email, $emailObject, $emailBody, $headers);
       if ($successMail) {
         $_SESSION['emailRecoverySend'] = true;
         $_SESSION['emailUser'] = $email;

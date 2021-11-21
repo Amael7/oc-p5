@@ -20,6 +20,7 @@
     // Layout
     $router->get('/', 'AppController#home');
     $router->get('/cv', 'AppController#cv');
+    $router->post('/contactForm', 'AppController#contactForm');
     $router->get('/connection', 'AppController#connectionView');
     $router->get('/emailRecoveryView', 'AppController#emailRecoveryView');
     $router->post('/sendEmailPasswordRecovery', 'AppController#sendEmailPasswordRecovery');
@@ -27,7 +28,6 @@
     $router->post('/passwordRecovery', 'AppController#passwordUpdate');
     $router->post('/login', 'AppController#login');
     $router->get('/logout', 'AppController#logout');
-    // $router->post('/contact', 'AppController#contact');
     // User
     $router->get('/registration', 'UsersController#new');
     $router->post('/registration', 'UsersController#create');
