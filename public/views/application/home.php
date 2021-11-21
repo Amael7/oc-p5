@@ -3,8 +3,8 @@
   </div>  
   <div class="home-container">
     
-    <img src="/public/assets/images/pp.jpg" alt="Photo de Profil" style="width: 350px; height: 400px;">
-    
+    <img src="" alt="Photo de Profil" style="width: 350px; height: 400px;">
+    <? #/public/assets/images/pp.jpg ?>
     <div class="my-infos">
       
       <h3>Montoro Stéphane</h3>

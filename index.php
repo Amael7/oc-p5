@@ -20,20 +20,27 @@
     // Layout
     $router->get('/', 'AppController#home');
     $router->get('/cv', 'AppController#cv');
-    $router->post('/contact', 'AppController#contact');
+    $router->get('/connection', 'AppController#connectionView');
+    $router->get('/emailRecoveryView', 'AppController#emailRecoveryView');
+    $router->post('/sendEmailPasswordRecovery', 'AppController#sendEmailPasswordRecovery');
+    $router->get('/passwordRecovery', 'AppController#passwordFormView');
+    $router->post('/passwordRecovery', 'AppController#passwordUpdate');
+    $router->post('/login', 'AppController#login');
+    $router->get('/logout', 'AppController#logout');
+    // $router->post('/contact', 'AppController#contact');
     // User
-    $router->get('/connection', 'UsersController#connectionView');
     $router->get('/registration', 'UsersController#new');
     $router->post('/registration', 'UsersController#create');
-    $router->post('/login', 'UsersController#login');
-    $router->post('/logout', 'UsersController#logout');
+    $router->get('/user/show', 'UsersController#show');
+    $router->get('/user/edit', 'UsersController#edit');
+    $router->post('/user/edit', 'UsersController#update');
     // Admin
-    $router->get('/blog/admin/dashboard', 'UsersController#adminDashboard');    
-    $router->get('/blog/admin/post-:id', 'UsersController#adminPostShow')->with('id', '[0-9]+');
-    $router->get('/blog/admin/post-:postId/comment-:commentId/delete', 'CommentsController#destroy')->with('postId', '[0-9]+','commentId', '[0-9]+');     
-    $router->get('/blog/admin/comments', 'CommentsController#index');    
-    $router->post('/blog/admin/comments/comment-:id/valide', 'CommentsController#valide')->with('id', '[0-9]+');    
-    $router->get('/blog/admin/comments/comment-:id/delete', 'CommentsController#destroy')->with('id', '[0-9]+');       
+    // $router->get('/blog/admin/dashboard', 'UsersController#adminDashboard');    
+    // $router->get('/blog/admin/post-:id', 'UsersController#adminPostShow')->with('id', '[0-9]+');
+    // $router->get('/blog/admin/post-:postId/comment-:commentId/delete', 'CommentsController#destroy')->with('postId', '[0-9]+','commentId', '[0-9]+');     
+    // $router->get('/blog/admin/comments', 'CommentsController#index');    
+    // $router->post('/blog/admin/comments/comment-:id/valide', 'CommentsController#valide')->with('id', '[0-9]+');    
+    // $router->get('/blog/admin/comments/comment-:id/delete', 'CommentsController#destroy')->with('id', '[0-9]+');       
     // Post
     $router->get('/blog', 'PostsController#index');
     $router->get('/blog/post-:id', 'PostsController#show')->with('id', '[0-9]+');

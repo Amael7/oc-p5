@@ -7,8 +7,8 @@
   <p><?= $post->getContent() ?></p>
   <p><?= $post->getAuthorName() ?></p>
   <p><?= $post->displayDateTime($post->getCreatedAt()) ?></p>
-  <a href=<?= "/blog/post-{$post->id()}/edit" ?> data-id="<?= $post->id() ?>" >Modifier le post</a>
-  <a href=<?= "/blog/post-{$post->id()}/comment/new" ?> >Ajouter un commentaire</a>
+  <a href=<?= "/blog/post-{$post->getId()}/edit" ?> data-id="<?= $post->getId() ?>" >Modifier le post</a>
+  <a href=<?= "/blog/post-{$post->getId()}/comment/new" ?> >Ajouter un commentaire</a>
 <?php endif; ?>
 
 <h1>Partie commentaire</h1>
@@ -21,6 +21,6 @@
       <p><?= $array['comment']->getContent() ?></p>
       <p><?= $array['commentAuthorFullname'] ?></p>
       <p><?= $array['commentCreatedAt'] ?></p>
-      <a href=<?= "/blog/post-{$post->id()}/comment-{$array['comment']->id()}/edit" ?> >Modifier le commentaire</a>
+      <a href=<?= "/blog/post-{$post->getId()}/comment-{$array['comment']->getId()}/edit" ?> >Modifier le commentaire</a>
     <?php endforeach; ?>
 <?php endif; ?>

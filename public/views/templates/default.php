@@ -16,9 +16,13 @@
         <ul id="list-navbar-menu">
           <li><a href="/">Accueil</a></li>
           <li><a href="/blog">Articles</a></li>
-          <li><a href="/connection">Inscription</a></li>
-          <li><a href="/registration">Connexion</a></li>
-          <li><a href="/logout">Déconnexion</a></li>
+          <?php if (isset($_SESSION['user_auth'])): ?>
+              <li><a href=<?= '/user/show' ?> >Mon profil</a></li>
+              <li><a href="/logout">Déconnexion</a></li>
+            <?php else: ?>
+              <li><a href="/connection">Connexion</a></li>
+              <li><a href="/registration">Inscription</a></li>
+          <?php endif; ?>
         </ul>
       </div> 
     </div>
