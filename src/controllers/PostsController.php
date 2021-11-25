@@ -22,12 +22,18 @@ class PostsController extends AppController {
     // Post informations
       $post = PostManager::getOne($id, "Post");
 
-    // Comment informations
-      $commentsResult = CommentManager::getAllThroughObject('Comment', 'post_id', $id);
-      $comments = Comment::displayComments($commentsResult);
+      // Comment informations
+      // comments waiting to be authorize by an admin
+      $unvalidCommentsResult = CommentManager::getCommentsThroughValidBool($post->getId(), '0', 'Comment');
+      $unvalidComments = Comment::displayComments($unvalidCommentsResult);
+      
+      // $commentsResult = CommentManager::getAllThroughObject('Comment', 'post_id', $id);
+      // Valid Comments
+      $validCommentsResult = CommentManager::getCommentsThroughValidBool($post->getId(), '1', 'Comment');
+      $validComments = Comment::displayComments($validCommentsResult);
 
     $view = new View("Article n°$id", 'posts/show');
-    $view->render(compact('post', 'comments'));
+    $view->render(compact('post', 'unvalidComments', 'validComments'));
   }
   
   public function new() {

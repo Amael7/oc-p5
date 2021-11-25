@@ -10,6 +10,7 @@
   {
     private string $title;
     private string $content;
+    private bool $valid;
     private $post_id;
     private $author_id;
 
@@ -62,7 +63,7 @@
     /**
      * get the post_id
      *
-     * @return void
+     * @return 
      */
     public function getPostId()
     {
@@ -73,7 +74,7 @@
      * set the post_id
      *
      * @param integer $post_id
-     * @return void
+     * @return 
      */
     public function setPostId($post_id)
     {
@@ -83,9 +84,32 @@
     }
 
     /**
+     * get the valid
+     *
+     * @return bool
+     */
+    public function getValid()
+    {
+        return $this->valid;
+    }
+
+    /**
+     * set the valid
+     *
+     * @param bool $valid
+     * @return bool
+     */
+    public function setValid(bool $valid)
+    {
+        $this->valid = $valid;
+
+        return $this;
+    }
+
+    /**
      * get the author_id
      *
-     * @return void
+     * @return
      */
     public function getAuthorId()
     {
@@ -96,7 +120,7 @@
      * set the author_id
      *
      * @param integer $author_id
-     * @return void
+     * @return 
      */
     public function setAuthorId($author_id)
     {

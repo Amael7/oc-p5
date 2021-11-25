@@ -35,12 +35,8 @@
     $router->get('/user/edit', 'UsersController#edit');
     $router->post('/user/edit', 'UsersController#update');
     // Admin
-    // $router->get('/blog/admin/dashboard', 'UsersController#adminDashboard');    
-    // $router->get('/blog/admin/post-:id', 'UsersController#adminPostShow')->with('id', '[0-9]+');
-    // $router->get('/blog/admin/post-:postId/comment-:commentId/delete', 'CommentsController#destroy')->with('postId', '[0-9]+','commentId', '[0-9]+');     
-    // $router->get('/blog/admin/comments', 'CommentsController#index');    
-    // $router->post('/blog/admin/comments/comment-:id/valide', 'CommentsController#valide')->with('id', '[0-9]+');    
-    // $router->get('/blog/admin/comments/comment-:id/delete', 'CommentsController#destroy')->with('id', '[0-9]+');       
+    $router->get('/admin/dashboard', 'UsersController#adminDashboard');
+    $router->get('/blog/admin/post-:postId/comment-:commentId/valid', 'CommentsController#validation')->with('postId', '[0-9]+','commentId', '[0-9]+');
     // Post
     $router->get('/blog', 'PostsController#index');
     $router->get('/blog/post-:id', 'PostsController#show')->with('id', '[0-9]+');
@@ -54,6 +50,7 @@
     $router->post('/blog/post-:id/comment/new', 'CommentsController#create')->with('id', '[0-9]+');
     $router->get('/blog/post-:postId/comment-:commentId/edit', 'CommentsController#edit')->with('postId', '[0-9]+','commentId', '[0-9]+');
     $router->post('/blog/post-:postId/comment-:commentId/edit', 'CommentsController#update')->with('postId', '[0-9]+','commentId', '[0-9]+');
+    $router->get('/blog/post-:postId/comment-:commentId/delete', 'CommentsController#destroy')->with('postId', '[0-9]+','commentId', '[0-9]+');
     // 404
     $router->get('/404', 'AppController#error404'); // 
     // Run Route

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Manager\UserManager;
+use App\Manager\PostManager;
 use App\Models\User;
 use App\Core\Validation;
 use App\Core\View;
@@ -15,6 +16,8 @@ class UsersController extends AppController {
   }
   
   public function create() {
+    $firstName = Validation::check($_POST['firstName']);
+    $lastName = Validation::check($_POST['lastName']);
     $email = Validation::check($_POST['email']);
     $password = Validation::check($_POST['password']);
     $passwordCheck = Validation::check($_POST['passwordCheck']);
@@ -24,8 +27,8 @@ class UsersController extends AppController {
 
       $attributes = [ ':email' => $email,
                       ':password' => $hashPassword,
-                      ':first_name' => '',
-                      ':last_name' => '',
+                      ':first_name' => $firstName,
+                      ':last_name' => $lastName,
                       ':description' => '',
                     ];
       $success = UserManager::addOneRow('User', '(email, password, first_name, last_name, description)', '(:email, :password, :first_name, :last_name, :description)', $attributes);
@@ -85,9 +88,16 @@ class UsersController extends AppController {
     }
   }
 
-  // public function adminDashboard() {
-  //   // $this->render('admin/adminDashboard');
-  // }
+  public function adminDashboard() {
+    if (isset($_SESSION['user_auth'])) {
+      $user = UserManager::getOne($_SESSION['user_auth'], "User");
+      $posts = PostManager::getAll("Post");
+      $view = new View('Mon Dashboard', 'users/adminDashboard');
+      $view->render(compact('user', 'posts'));
+    } else {
+      $_SESSION['flash']['danger'] = "Aucun accès autorisé.";
+    }
+  }
   
   // public function adminPostShow($postId) {
   //   // $this->render('admin/adminPostShow');
