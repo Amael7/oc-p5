@@ -12,6 +12,9 @@
     private string $last_name;
     private string $email;
     private string $password;
+    private string $tokenEmailRecuperation;
+    private string $tokenAuth;
+    private string $tokenAdmin;
     private bool $admin = false;
     private string $description;
 
@@ -161,5 +164,72 @@
     public function getAdmin(): bool
     {
       return $this->admin;
+    }
+    
+    /**
+     * Set the tokenEmailRecuperation value
+     *
+     * @return string
+     */
+    public function setTokenEmailRecuperation(): string
+    {
+      return $this->token_email_recuperation = uniqid();
+      
+      return $this;
+    }
+
+    /**
+     * Get the tokenEmailRecuperation
+     *
+     * @return string
+     */
+    public function getTokenEmailRecuperation(): string
+    {
+      return $this->token_email_recuperation;
+    }
+    
+    /**
+     * Set the tokenAuth value
+     *
+     * @return string
+     */
+    public function setTokenAuth(): string
+    {
+
+      return $this->token_auth = uniqid();
+      
+      return $this;
+    }
+
+    /**
+     * Get the tokenAuth of a user
+     *
+     * @return string
+     */
+    public function getTokenAuth(): string
+    {
+      return $this->token_auth;
+    }
+    
+    /**
+     * Set the tokenAdmin value
+     *
+     * @return string
+     */
+    public function setTokenAdmin(): string
+    {
+      return $this->token_admin = uniqid();
+      
+      return $this;
+    }
+
+    /**
+     * Get the tokenAdmin of a user
+     *
+     * @return string
+     */
+    public function getTokenAdmin(): string
+    {
+      return $this->token_admin;
     }
   }

@@ -36,7 +36,7 @@ class UsersController extends AppController {
       $success = false;
     }
 
-    if ($success === true) {
+    if ($success) {
       $_SESSION['flash']['success'] = 'Création de compte validé.';
       header('Location: /connection');
     } else {
@@ -46,61 +46,63 @@ class UsersController extends AppController {
   }
 
   public function show() {
-    $user = UserManager::getOne($_SESSION['user_auth'], "User");
-    $view = new View('Mon profil', 'users/show');
-    $view->render(compact('user'));
+    if (isset($_SESSION['tokenAuth'])) {
+      $admin = self::checkUserAdmin($_SESSION['tokenAuth']);
+      $user = UserManager::getUserByTokenAuth($_SESSION['tokenAuth'], 'User');
+      $view = new View('Mon profil', 'users/show');
+      $view->render(compact('user', 'admin'));
+    }
   }
   
   public function edit() {
-    $user = UserManager::getOne($_SESSION['user_auth'], "User");
+    if (isset($_SESSION['tokenAuth'])) {
+      $admin = self::checkUserAdmin($_SESSION['tokenAuth']);
+      $user = UserManager::getUserByTokenAuth($_SESSION['tokenAuth'], 'User');
 
-    $_POST['firstName'] =  $user->getFirstName();
-    $_POST['lastName'] = $user->getLastName();
-    $_POST['email'] = $user->getEmail();
-    $_POST['description'] = $user->getDescription();
+      $_POST['firstName'] =  $user->getFirstName();
+      $_POST['lastName'] = $user->getLastName();
+      $_POST['email'] = $user->getEmail();
+      $_POST['description'] = $user->getDescription();
 
-    $view = new View('Modification de compte', 'users/edit');
-    $view->render(compact('user'));
-  }
+      $view = new View('Modification de compte', 'users/edit');
+      $view->render(compact('user', 'admin'));
+    } 
+  } 
 
   public function update() {
-    $user = UserManager::getOne($_SESSION['user_auth'], "User");
+    if (isset($_SESSION['tokenAuth'])) {
+      $user = UserManager::getUserByTokenAuth($_SESSION['tokenAuth'], 'User');
 
-    $email = Validation::check($_POST['email']);
+      $email = Validation::check($_POST['email']);
 
-    $firstName = Validation::check($_POST['firstName']);
-    $lastName = Validation::check($_POST['lastName']);
-    $description = Validation::check($_POST['description']);
-    
-    $attributes = [ 'email' => $email,
-                    'first_name' => $firstName,
-                    'last_name' => $lastName,
-                    'description' => $description,
-                  ];
-    $success = UserManager::updateOneRow('User', $user->getId(), $attributes);
+      $firstName = Validation::check($_POST['firstName']);
+      $lastName = Validation::check($_POST['lastName']);
+      $description = Validation::check($_POST['description']);
       
-    if ($success) {
-      $_SESSION['flash']['success'] = 'Le compte à bien été modifié.';
-      header("Location: /user/show");
-    } else {
-      $_SESSION['flash']['danger'] = "Un ou plusieurs des champs n'est pas valide.";
-      header("Location: /user/edit");
+      $attributes = [ 'email' => $email,
+                      'first_name' => $firstName,
+                      'last_name' => $lastName,
+                      'description' => $description,
+                    ];
+      $success = UserManager::updateOneRow('User', $user->getId(), $attributes);
+        
+      if ($success) {
+        $_SESSION['flash']['success'] = 'Le compte à bien été modifié.';
+        header("Location: /user/show");
+      } else {
+        $_SESSION['flash']['danger'] = "Un ou plusieurs des champs n'est pas valide.";
+        header("Location: /user/edit");
+      }
     }
   }
 
   public function adminDashboard() {
-    if (isset($_SESSION['user_auth'])) {
-      $user = UserManager::getOne($_SESSION['user_auth'], "User");
+    if (isset($_SESSION['tokenAuth'])) {
+      $admin = self::checkUserAdmin($_SESSION['tokenAuth']);
+      $user = UserManager::getUserByTokenAuth($_SESSION['tokenAuth'], 'User');
       $posts = PostManager::getAll("Post");
       $view = new View('Mon Dashboard', 'users/adminDashboard');
-      $view->render(compact('user', 'posts'));
-    } else {
-      $_SESSION['flash']['danger'] = "Aucun accès autorisé.";
-    }
+      $view->render(compact('user', 'admin', 'posts'));
+    } 
   }
-  
-  // public function adminPostShow($postId) {
-  //   // $this->render('admin/adminPostShow');
-  // }
-
 }

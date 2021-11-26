@@ -7,16 +7,16 @@
   <p><?= $post->getContent() ?></p>
   <p><?= $post->getAuthorName() ?></p>
   <p><?= $post->displayDateTime($post->getCreatedAt()) ?></p>
-  <?php if (isset($_SESSION['user_auth'])): ?>
+  <?php if (isset($_SESSION['tokenAuth'])): ?>
     <a href=<?= "/blog/post-{$post->getId()}/comment/new" ?> >Ajouter un commentaire</a>
   <?php endif; ?>
-  <?php if (isset($_SESSION['user_admin']) && $_SESSION['user_admin'] === true): ?>
+  <?php if (isset($admin) && $admin): ?>
     <a href=<?= "/blog/post-{$post->getId()}/edit" ?> data-id="<?= $post->getId() ?>" >Modifier le post</a>
   <?php endif; ?>
 <?php endif; ?>
 
 
-<?php if (isset($_SESSION['user_admin']) && $_SESSION['user_admin'] === true): ?>
+<?php if (isset($admin) && $admin): ?>
   <h2>Commentaire en attente de validation :</h2>
   <?php if (isset($unvalidComments) == false): ?>
     <h3>Aucun commentaire.</h3>
@@ -43,11 +43,11 @@
       <p><?= $array['commentAuthorFullname'] ?></p>
       <p><?= $array['commentCreatedAt'] ?></p>
       
-      <?php if (isset($_SESSION['user_admin']) && $_SESSION['user_admin'] === true): ?>
+      <?php if (isset($admin) && $admin): ?>
         <a href=<?= "/blog/admin/post-{$post->getId()}/comment-{$array['comment']->getId()}/valid" ?>><?= ($array['comment']->getValid())? "Annuler le commentaire" : "Valider le commentaire" ?></a>
       <?php endif; ?>
 
-      <?php if ((isset($_SESSION['user_auth']) && ("{$_SESSION['user_auth']}" === $array['comment']->getAuthorId()) || (isset($_SESSION['user_admin']) && $_SESSION['user_admin'] === true))): ?>
+      <?php if (isset($_SESSION['tokenAuth']) && ("{$_SESSION['tokenAuth']}" === $array['comment']->getAuthorId()) || isset($admin) && $admin): ?>
         <a href=<?= "/blog/post-{$post->getId()}/comment-{$array['comment']->getId()}/delete" ?> >Supprimer le commentaire</a>
       <?php endif; ?>
     <?php endforeach; ?>

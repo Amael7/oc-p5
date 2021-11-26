@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use \App\Core\Controller;
 use \App\Core\View;
+use App\Models\User;
 use App\Manager\UserManager;
 use App\Core\Validation;
 
@@ -16,8 +17,12 @@ class AppController extends Controller {
    */
   public function home()
   {
+    $admin = false;
+    if (isset($_SESSION['tokenAuth'])) {
+      $admin = self::checkUserAdmin($_SESSION['tokenAuth']);
+    }
     $view = new View('Acceuil', 'application/home');
-    $view->render();
+    $view->render(compact('admin'));
   }
 
   /**
@@ -92,8 +97,10 @@ class AppController extends Controller {
       $hashPassword = $user->getPassword();
       $successPassword = password_verify($password, $hashPassword);
       if ($successPassword) {
-        $_SESSION['user_auth'] = $user->getId();
-        $_SESSION['user_admin'] = $user->getAdmin();
+        $token = $user->setTokenAuth();
+        UserManager::updateOneTokenRow('User', $user->getId(), ['token_auth' => $token]);
+        $user = UserManager::getUserByTokenAuth($token, 'User');
+        $_SESSION['tokenAuth'] = $user->getTokenAuth();
         $_SESSION['flash']['success'] = 'Connexion réussi.';
         header("Location: /blog");
       } else {
@@ -125,6 +132,8 @@ class AppController extends Controller {
     $email = Validation::check($_POST['email']);
     $successEmail = UserManager::checkUserByAttribute($email, 'email');
     $user = UserManager::getUserByEmail($email, 'User');
+    // génerer un token email
+
     $emailObject = "Renouvellement de mot de passe";
     $emailBody = "<div>
                     <div>
@@ -140,7 +149,7 @@ class AppController extends Controller {
                     </div>
                     
                     <div>
-                      <a href='localhost/passwordRecovery'>Créer un nouveau mot de passe</a>
+                      <a href='localhost/passwordRecovery?token='>Créer un nouveau mot de passe</a>
                     </div>
                   </div>";
     
@@ -171,8 +180,12 @@ class AppController extends Controller {
    * @return
    */
   public function passwordFormView() {
+    $admin = false;
+    if (isset($_SESSION['tokenAuth'])) {
+      $admin = self::checkUserAdmin($_SESSION['tokenAuth']);
+    }
     $view = new View('Modification du mot de passe', 'application/passwordFormView');
-    $view->render();
+    $view->render(compact('admin'));
   } 
 
   /**
@@ -181,7 +194,7 @@ class AppController extends Controller {
    * @return
    */
   public function passwordUpdate() {
-    $user = (isset($_SESSION['user_auth'])) ? UserManager::getOne($_SESSION['user_auth'], 'User') : null ;
+    $user = UserManager::getUserByTokenAuth($_SESSION['tokenAuth'], 'User');
     $email = (isset($_SESSION['emailUser'])) ? Validation::check($_SESSION['emailUser']) : $user->getEmail();
     $successEmail = UserManager::checkUserByAttribute($email, 'email');
     if ($successEmail) {
@@ -228,9 +241,18 @@ class AppController extends Controller {
    *
    * @return View
    */
-  public function error404()
-  {
+  public function error404() {
     $view = new View('Page Introuvable', 'errors/404');
     $view->render();
+  }
+
+  /**
+   * Check if the user is an admin with the token_admin
+   *
+   * @return bool
+   */
+  public static function checkUserAdmin($tokenAuth) {
+    $user = UserManager::getUserByTokenAuth($tokenAuth ,'User');
+    return $user->getAdmin();
   }
 }

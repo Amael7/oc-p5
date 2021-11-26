@@ -77,7 +77,7 @@ class AppManager {
    * @param array $attributes
    * @return string
    */
-  private static function setAttributesByString($attributes) {
+  protected static function setAttributesByString($attributes) {
     $set = "";
     foreach($attributes as $key => $value) {
       $set .= "$key = :$key,";
@@ -158,4 +158,6 @@ class AppManager {
   protected static function getClassName(string $className) {
     return "App\Models\\" . $className;
   }
+
+  
 }
