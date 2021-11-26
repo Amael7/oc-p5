@@ -7,9 +7,11 @@
   <p><?= $post->getContent() ?></p>
   <p><?= $post->getAuthorName() ?></p>
   <p><?= $post->displayDateTime($post->getCreatedAt()) ?></p>
+  <?php if (isset($_SESSION['user_auth'])): ?>
+    <a href=<?= "/blog/post-{$post->getId()}/comment/new" ?> >Ajouter un commentaire</a>
+  <?php endif; ?>
   <?php if (isset($_SESSION['user_admin']) && $_SESSION['user_admin'] === true): ?>
     <a href=<?= "/blog/post-{$post->getId()}/edit" ?> data-id="<?= $post->getId() ?>" >Modifier le post</a>
-    <a href=<?= "/blog/post-{$post->getId()}/comment/new" ?> >Ajouter un commentaire</a>
   <?php endif; ?>
 <?php endif; ?>
 

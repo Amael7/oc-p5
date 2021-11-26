@@ -20,15 +20,13 @@ class CommentsController extends AppController {
     $postId = $id;
     $title = Validation::check($_POST['title']);
     $content = Validation::check($_POST['content']);
-    // $authorId = Validation::check($_POST['authorId']); we need to fetch the user id when we'll have the admin/login system
+    $authorId = Validation::check($_SESSION['user_auth']);
     $attributes = [ ':title' => $title,
                     ':content' => $content,
-                    ':author_id' => 1,
+                    ':author_id' => $authorId,
                     ':post_id' => $postId
                   ];
-
     $success = CommentManager::addOneRow('Comment', '(title, content, author_id, post_id)', '(:title, :content, :author_id, :post_id)', $attributes);
-    
     if ($success === true) {
       $_SESSION['flash']['success'] = 'Votre commentaire à bien été ajouté.';
       header("Location: /blog/post-$postId");
@@ -52,12 +50,12 @@ class CommentsController extends AppController {
   public function update($postId, $commentId) {
     $title = Validation::check($_POST['title']);
     $content = Validation::check($_POST['content']);
-    // $authorId = Validation::check($_POST['authorId']); we need to fetch the user id when we'll have the admin/login system
+    $authorId = Validation::check($_POST['authorId']);
     $attributes = [ 'title' => $title,
                     'content' => $content,
+                    'author_id' => $authorId
                   ];
     $success = CommentManager::updateOneRow('Comment', $commentId, $attributes);
-    
     if ($success === true) {
       $_SESSION['flash']['success'] = 'Votre commentaire à bien été mis à jour.';
       header("Location: /blog/post-$postId");
@@ -70,9 +68,7 @@ class CommentsController extends AppController {
   public function destroy($postId, $commentId) {
     $comment = CommentManager::getOne($commentId, "Comment");
     if ((isset($_SESSION['user_auth']) && ("{$_SESSION['user_auth']}" === $comment->getAuthorId()) || (isset($_SESSION['user_admin']) && $_SESSION['user_admin'] === true))) {
-
       $success = CommentManager::deleteOneRow('Comment', $commentId);
-      
       if ($success === true) {
         $_SESSION['flash']['success'] = 'Votre commentaire à bien été supprimé.';
         header("Location: /blog/post-$postId");
@@ -87,13 +83,9 @@ class CommentsController extends AppController {
 
   public function validation($postId, $commentId) {
     $comment = CommentManager::getOne($commentId, "Comment");
-
     $bool = $comment->getValid() ? 0 : 1; # 0 = false, 1 = true
-
     if (isset($_SESSION['user_admin']) && $_SESSION['user_admin'] === true) {
-
       $success = CommentManager::updateOneRow('Comment', $commentId, ['valid' => $bool]);
-      
       if ($success === true) {
         $_SESSION['flash']['success'] = 'Votre commentaire à bien été supprimé.';
         header("Location: /blog/post-$postId");
