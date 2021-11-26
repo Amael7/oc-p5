@@ -138,4 +138,14 @@
     {
         return \App\Manager\UserManager::getOne($this->author_id, "User")->getFullname();
     }
+
+    /**
+     * get the number of comment through the valid boolean
+     *
+     * @return
+     */
+    public function getAllUnvalidComments($validBool)
+    {
+        return \App\Manager\CommentManager::getCommentsThroughValidBool($this->id, $validBool, "Comment");
+    }
   }

@@ -93,6 +93,7 @@ class AppController extends Controller {
       $successPassword = password_verify($password, $hashPassword);
       if ($successPassword) {
         $_SESSION['user_auth'] = $user->getId();
+        $_SESSION['user_admin'] = $user->getAdmin();
         $_SESSION['flash']['success'] = 'Connexion réussi.';
         header("Location: /blog");
       } else {
@@ -230,16 +231,6 @@ class AppController extends Controller {
   public function error404()
   {
     $view = new View('Page Introuvable', 'errors/404');
-    $view->render();
-  }
-
-  /**
-   * function to render the C.V page view
-   *
-   * @return View
-   */
-  public function cv() {
-    $view = new View('Mon C.V', 'application/cv');
     $view->render();
   }
 }

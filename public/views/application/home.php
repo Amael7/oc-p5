@@ -15,7 +15,6 @@
       </p>
       
       <a href="/public/assets/pdf/cv.pdf" target="blank">Voici mon C.V</a>
-      <a href="/cv" target="blank">Voici mon C.V</a>
       <div class="social_link">
         <h3>Mes Réseaux sociaux</h3>
         <ul>
