@@ -27,7 +27,7 @@ class UserManager extends AppManager {
     return parent::dbConnect()->query('SELECT * FROM ' . parent::getTableName($className) . ' WHERE email = ' . "'$email'", parent::getClassName($className));
   }
 
-    /**
+  /**
    * function to get one item by a token
    *
    * @param string $token
@@ -39,11 +39,32 @@ class UserManager extends AppManager {
   }
 
   /**
+   * function to get one item by a token
+   *
+   * @param string $token
+   * @param string $className
+   * @return User
+   */
+  public static function getUserByToken($token, $tokenType, $className) {
+    return parent::dbConnect()->query('SELECT * FROM ' . parent::getTableName($className) . ' WHERE ' . $tokenType . ' = ' . "'$token'", parent::getClassName($className));
+  }
+
+  /**
+   * function to get one item by a tokenEmail
+   *
+   * @param string $token
+   * @param string $className
+   * @return User
+   */
+  public static function getUserByTokenEmail($token, $className) {
+    return parent::dbConnect()->query('SELECT * FROM ' . parent::getTableName($className) . ' WHERE token_email_recuperation = ' . "'$token'", parent::getClassName($className));
+  }
+
+  /**
    * function to update one row token to the db
    *
    * @param string $className
-   * @param string $sqlColumn
-   * @param string $sqlColumnValue
+   * @param int $userId
    * @param array $attributes
    * @return
    */

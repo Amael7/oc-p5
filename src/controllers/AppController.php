@@ -131,33 +131,35 @@ class AppController extends Controller {
   public function sendEmailPasswordRecovery() {
     $email = Validation::check($_POST['email']);
     $successEmail = UserManager::checkUserByAttribute($email, 'email');
-    $user = UserManager::getUserByEmail($email, 'User');
-    // génerer un token email
-
-    $emailObject = "Renouvellement de mot de passe";
-    $emailBody = "<div>
-                    <div>
-                      <p>Bonjour" . $user->getFullname() . ", </p>&nbsp;
-                    </div>
-
-                    <div>
-                      <p><b>Vous avez effectué une demande de mot de passe oublié.<b></p>&nbsp;
-                    </div>
-                    
-                    <div>
-                      <p><b>Voici le lien de renouvellement de mot de passe :<b></p>&nbsp;
-                    </div>
-                    
-                    <div>
-                      <a href='localhost/passwordRecovery?token='>Créer un nouveau mot de passe</a>
-                    </div>
-                  </div>";
-    
-    $headers = 'MIME-Version: 1.0' . "\r\n"
-    . 'Content-type: text/html; charset=utf-8' . "\r\n"
-    . 'From: stephane.montoro@hotmail.com' . "\r\n";
-
     if ($successEmail) {
+      $user = UserManager::getUserByEmail($email, 'User');
+      $token = $user->setTokenEmailRecuperation();
+      UserManager::updateOneTokenRow('User', $user->getId(), ['token_email_recuperation' => $token]);
+      $user = UserManager::getUserByTokenEmail($token, 'User');
+      
+      $emailObject = "Renouvellement de mot de passe";
+      $emailBody = "<div>
+                      <div>
+                        <p>Bonjour" . $user->getFullname() . ", </p>&nbsp;
+                      </div>
+
+                      <div>
+                        <p><b>Vous avez effectué une demande de mot de passe oublié.<b></p>&nbsp;
+                      </div>
+                      
+                      <div>
+                        <p><b>Voici le lien de renouvellement de mot de passe :<b></p>&nbsp;
+                      </div>
+                      
+                      <div>
+                        <a href='localhost/passwordRecovery?token=" . $user->getTokenEmailRecuperation() . "'>Créer un nouveau mot de passe</a>
+                      </div>
+                    </div>";
+      
+      $headers = 'MIME-Version: 1.0' . "\r\n"
+      . 'Content-type: text/html; charset=utf-8' . "\r\n"
+      . 'From: stephane.montoro@hotmail.com' . "\r\n";
+      
       $successMail = mail($email, $emailObject, $emailBody, $headers);
       if ($successMail) {
         $_SESSION['emailRecoverySend'] = true;
@@ -179,13 +181,14 @@ class AppController extends Controller {
    *
    * @return
    */
-  public function passwordFormView() {
+  public function passwordFormView($token) {
     $admin = false;
+    $user = UserManager::getUserByToken($token, 'token_email_recuperation', 'User');
     if (isset($_SESSION['tokenAuth'])) {
       $admin = self::checkUserAdmin($_SESSION['tokenAuth']);
     }
     $view = new View('Modification du mot de passe', 'application/passwordFormView');
-    $view->render(compact('admin'));
+    $view->render(compact('user', 'admin'));
   } 
 
   /**

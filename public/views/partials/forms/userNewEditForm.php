@@ -26,6 +26,6 @@
     <button type="submit"><?= (isset($_SESSION['tokenAuth']))? "Modifier" : "Inscription" ?></button>
   </form>
   <?php if (isset($_SESSION['tokenAuth'])): ?>
-    <a href="/passwordRecovery">Modifier le mot de passe</a>
+    <a href=<?= "/passwordRecovery?token={}" ?> >Modifier le mot de passe</a>
   <?php endif; ?>
 </div>
