@@ -16,8 +16,8 @@
         <ul id="list-navbar-menu">
           <li><a href="/">Accueil</a></li>
           <li><a href="/blog">Articles</a></li>
-          <?php if (isset($_SESSION['user_auth'])): ?>
-            <?php if (isset($_SESSION['user_admin']) && $_SESSION['user_admin'] === true): ?>
+          <?php if (isset($_SESSION['tokenAuth'])): ?>
+            <?php if (isset($admin) && $admin): ?>
               <li><a href="/admin/dashboard">Dashboard</a></li>
             <?php endif; ?>
             <li><a href=<?= '/user/show' ?> >Mon profil</a></li>
@@ -43,6 +43,11 @@
         <li><a a href="https://twitter.com/MontoroStephane" target="blank"> <i class="fab fa-twitter"></i></a></li>
       </ul>
     </div>
+    <?php if (isset($_SESSION['tokenAuth'])): ?>
+      <?php if (isset($admin) && $admin): ?>
+        <li><a href="/admin/dashboard">Dashboard</a></li>
+      <?php endif; ?>
+    <?php endif; ?>
       <p>Ce blog est édité par moi-même. Copyright © 2021-2021. Tous droits réservés.</p>
     </div>
   </body>
