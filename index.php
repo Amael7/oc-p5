@@ -21,7 +21,8 @@
     $router->get('/', 'AppController#home');
     $router->get('/connection', 'AppController#connectionView'); // Connection view
     $router->get('/emailRecoveryView', 'AppController#emailRecoveryView'); // Form to send an email to recover the password
-    $router->get('/passwordRecovery?token-:token', 'AppController#passwordFormView')->with('token', '[0-9a-zA-Z]+'); // call the view for the new password form
+    $router->get('/passwordRecovery', 'AppController#passwordFormView'); // call the view for the new password form when a user is connected
+    $router->get('/passwordRecovery-:token', 'AppController#passwordFormView')->with('token', '[0-9a-zA-Z]+'); // call the view for the new password form
     $router->post('/contactForm', 'AppController#contactForm'); // call the function to send the contact form mail
     $router->post('/sendEmailPasswordRecovery', 'AppController#sendEmailPasswordRecovery'); // call the function to send the mail for the recovery password
     $router->post('/passwordRecovery', 'AppController#passwordUpdate'); // call the function to update the password

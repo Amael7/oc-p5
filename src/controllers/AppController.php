@@ -152,7 +152,7 @@ class AppController extends Controller {
                       </div>
                       
                       <div>
-                        <a href='localhost/passwordRecovery?token=" . $user->getTokenEmailRecuperation() . "'>Créer un nouveau mot de passe</a>
+                        <a href='localhost/passwordRecovery-" . $user->getTokenEmailRecuperation() . "'>Créer un nouveau mot de passe</a>
                       </div>
                     </div>";
       
@@ -161,6 +161,7 @@ class AppController extends Controller {
       . 'From: stephane.montoro@hotmail.com' . "\r\n";
       
       $successMail = mail($email, $emailObject, $emailBody, $headers);
+
       if ($successMail) {
         $_SESSION['emailRecoverySend'] = true;
         $_SESSION['emailUser'] = $email;
@@ -181,9 +182,13 @@ class AppController extends Controller {
    *
    * @return
    */
-  public function passwordFormView($token) {
+  public function passwordFormView($token = null) {
     $admin = false;
-    $user = UserManager::getUserByToken($token, 'token_email_recuperation', 'User');
+    if ($token === null) {
+      $user = UserManager::getUserByToken($_SESSION['tokenAuth'], 'token_email_recuperation', 'User');
+    } else {
+      $user = UserManager::getUserByToken($token, 'token_email_recuperation', 'User');
+    }
     if (isset($_SESSION['tokenAuth'])) {
       $admin = self::checkUserAdmin($_SESSION['tokenAuth']);
     }
