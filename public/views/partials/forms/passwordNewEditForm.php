@@ -1,6 +1,7 @@
 <p>Modification du mot de passe</p>
 <div class="form-section"> 
   <form action="/passwordRecovery" method="post">
+  <form action="/passwordRecovery <?= (isset($_SESSION['tokenEmail'])) ? "-{$_SESSION['tokenEmail']}" : "" ?>" method="post">
     <label for="password">Mot de passe</label>
     <input type="password" name="password" id="password" placeholder="Mot de passe" required="required">
     

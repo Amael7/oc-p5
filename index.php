@@ -26,6 +26,7 @@
     $router->post('/contactForm', 'AppController#contactForm'); // call the function to send the contact form mail
     $router->post('/sendEmailPasswordRecovery', 'AppController#sendEmailPasswordRecovery'); // call the function to send the mail for the recovery password
     $router->post('/passwordRecovery', 'AppController#passwordUpdate'); // call the function to update the password
+    $router->post('/passwordRecovery-:token', 'AppController#passwordUpdate')->with('token', '[0-9a-zA-Z]+'); // call the function to update the password
     $router->get('/registration', 'UsersController#new'); // the new user form view
     $router->post('/registration', 'UsersController#create'); // call the function to create a new user
 
