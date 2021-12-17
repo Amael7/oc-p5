@@ -53,11 +53,6 @@ class Database {
     while($data = $req->fetchObject($class_name)) {
       $datas[] = $data;
     }
-    if($datas != null) {
-      if(count($datas) === 1 ) {
-        return $datas[0];
-      }
-    }
     return $datas;
   }
 

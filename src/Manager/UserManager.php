@@ -24,7 +24,7 @@ class UserManager extends AppManager {
    * @return User
    */
   public static function getUserByEmail($email, $className) {
-    return parent::dbConnect()->query('SELECT * FROM ' . parent::getTableName($className) . ' WHERE email = ' . "'$email'", parent::getClassName($className));
+    return parent::dbConnect()->query('SELECT * FROM ' . parent::getTableName($className) . ' WHERE email = ' . "'$email'", parent::getClassName($className))[0];
   }
 
   /**
@@ -35,7 +35,7 @@ class UserManager extends AppManager {
    * @return User
    */
   public static function getUserByTokenAuth($token, $className) {
-    return parent::dbConnect()->query('SELECT * FROM ' . parent::getTableName($className) . ' WHERE token_auth = ' . "'$token'", parent::getClassName($className));
+    return parent::dbConnect()->query('SELECT * FROM ' . parent::getTableName($className) . ' WHERE token_auth = ' . "'$token'", parent::getClassName($className))[0];
   }
 
   /**
@@ -57,7 +57,7 @@ class UserManager extends AppManager {
    * @return User
    */
   public static function getUserByTokenEmail($token, $className) {
-    return parent::dbConnect()->query('SELECT * FROM ' . parent::getTableName($className) . ' WHERE token_email_recuperation = ' . "'$token'", parent::getClassName($className));
+    return parent::dbConnect()->query('SELECT * FROM ' . parent::getTableName($className) . ' WHERE token_email_recuperation = ' . "'$token'", parent::getClassName($className))[0];
   }
 
   /**
@@ -72,5 +72,16 @@ class UserManager extends AppManager {
     $sql = 'UPDATE ' . self::getTableName($className) . ' SET ' . parent::setAttributesByString($attributes) . " WHERE id= " . $userId;
     $result = self::dbConnect()->prepare($sql, $attributes, $className);
     return $result;
+  }
+
+
+  /**
+   * function to get all admin user in db
+   *
+   * @param string $className
+   * @return array
+   */
+  public static function getAllAdmin($className) {
+    return self::dbConnect()->query('SELECT * FROM ' . self::getTableName($className) . ' WHERE admin= 1', self::getClassName($className));
   }
 }

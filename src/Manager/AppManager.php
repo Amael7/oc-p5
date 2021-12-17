@@ -36,7 +36,7 @@ class AppManager {
    * @return
    */
   public static function getOne($objId, $className) {
-    return self::dbConnect()->query('SELECT * FROM ' . self::getTableName($className) . ' WHERE id = ' . $objId, self::getClassName($className));
+    return self::dbConnect()->query('SELECT * FROM ' . self::getTableName($className) . ' WHERE id = ' . $objId, self::getClassName($className))[0];
   }
   
   /**

@@ -1,9 +1,10 @@
 <h1>Admin Dashboard</h1>
 
+<a href=<?= "/blog/post/new" ?>><h2>Créer un nouvel article</h2></a>
+
 <?php if(isset($posts) && $posts == []): ?>
   <h2>Aucun Articles</h2>
   <?php else: ?>
-    <a href="/blog/post/new">Créer un nouvelle article</a>
     <?php foreach($posts as $post): ?>
       <a href=<?= "/blog/post-" . $post->getId() ?> data-id="<?= $post->getId() ?>" >
         <h2><?= $post->getTitle() ?></h2>
