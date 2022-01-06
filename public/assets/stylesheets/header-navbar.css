@@ -1,7 +1,6 @@
 /* Header Navbar */
 
 .header-navbar-container {
-  background-color: white;
   min-width: 100%;
   height: 75px;
   display: flex;
@@ -33,7 +32,8 @@
 
 
 #list-navbar-menu li a {
-  color: black;
+  color: white;
+  font-weight: 700;
 }
 
 #list-navbar-menu li a:hover {

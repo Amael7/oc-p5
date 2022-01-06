@@ -5,6 +5,10 @@
 /* #6D8A96 Light Slate Grey */
 /* #5D707F Dark electric Blue */
 /* #66CED6 Sky Blue Crayola */
+/* #072227 Black */
+/* #35858B btn */
+/* #4FBDBA link & btn:hover */
+
 
 /* colors End */
 
@@ -17,12 +21,20 @@
     font-family: 'Roboto', sans-serif;
     margin: 0px;
     padding: 15px 10px;
+    font-weight: 500;
+    color: #072227;
+  }
+
+  h1, h2 {
+    font-weight: 900;
   }
   
   p, a {
     font-family: 'Montserrat', sans-serif;
     margin: 0px;
     padding: 15px 10px;
+    color: #072227;
+    font-size: 16px;
   }
 
 /* Typo End */
@@ -31,11 +43,18 @@
 
   li {
     list-style: none;
-    
   }
 
   a {
     text-decoration: none;
+  }
+
+  a:visited {
+    color: #072227;
+  }
+  
+  a:hover {
+    color: #4FBDBA;
   }
 
 /* Setup End */

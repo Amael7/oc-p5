@@ -1,5 +1,6 @@
-@import url('footer.css'); 
 @import url('contact-form.css'); 
+@import url('footer.css'); 
+@import url('form.css'); 
 @import url('header-navbar.css'); 
 @import url('setup_style.css'); 
 /* this import allow us to apply a clean reset of every element style but without breaking the necessary style from other navigateur  */
@@ -8,7 +9,7 @@
 /* Template Base */
 
   body {
-    background-color: rgb(171, 169, 169);
+    background-color: #8797B2;
     width: 100%;
     height: 100vh;
     margin: 0;
@@ -16,10 +17,9 @@
   }
 
   #main-container {
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
     text-align: center;
-    background-color: rgb(120, 120, 120);
   }
 
 /* Template Base End */
@@ -52,11 +52,18 @@
     justify-content: space-between;
   }
 
-  .social_link  li {
+  .social_link li {
     display: inline-block;
     list-style: none;
     text-align: center;
     padding: 2px ;
+  }
+
+  #pp {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
   }
 
 /* Home Style End */
