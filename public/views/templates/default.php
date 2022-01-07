@@ -35,12 +35,14 @@
     <div id="main-container">
       <?= $content ?>
     </div>
-
     <!-- Footer Navbar Start -->
-    <div class="footer-container">
-      <h3>Montoro Stéphane</h3>
-      <p>Ce blog est édité par moi-même. Copyright © 2021-2021. Tous droits réservés.</p>
-    </div>
+    <footer>
+      <div class="footer-container">
+        <h3>Montoro Stéphane</h3>
+        <p>Ce blog est édité par moi-même. Copyright © 2021-2021. Tous droits réservés.</p>
+      </div>
+    </footer>
     <!-- Footer Navbar Start -->
   </body>
+
 </html>

@@ -82,11 +82,15 @@
      * @param string $datetime
      * @return string
      */
-    public function displayDateTime(string $datetime) {
+    public function displayDateTime(string $datetime, $hour = true) {
       $year = substr($datetime, 0, 4);
       $month = substr($datetime, 5, 2);
       $day = substr($datetime, 8, 2);
       $time = substr($datetime, 11, 8);
-      return "$day/$month/$year - $time";
+      if ($hour == false) {
+        return "$day/$month/$year";
+      } else {
+        return "$day/$month/$year - $time";
+      }
     }
   }

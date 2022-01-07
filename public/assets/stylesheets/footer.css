@@ -5,7 +5,7 @@
   display: flex;
   justify-content: space-between;
   text-align: center;
-  /* height: 40px; */
+  width: 100%;
 }
 
 .footer-container p {
