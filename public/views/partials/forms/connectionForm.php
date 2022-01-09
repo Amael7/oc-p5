@@ -1,14 +1,13 @@
 <p>Connectez vous si vous avez déjà un compte </p>
-<div class="form-section"> 
-  <form action="/login" method="post">
+<div class="form-container">
+  <form action="/login" method="post" class="formulaire">
+    <p><label for="email">Email</label></p>
+    <p><input type="text" name="email" id="email" placeholder="Email" required="required"></p>
     
-    <label for="email">Email</label>
-    <input type="text" name="email" id="email" placeholder="Email" required="required">
+    <p><label for="password">Mot de passe</label></p>
+    <p><input type="password" name="password" id="password" placeholder="Mot de passe" required="required"></p>
     
-    <label for="password">Mot de passe</label>
-    <input type="password" name="password" id="password" placeholder="Mot de passe" required="required">
-    
-    <button type="submit">Connexion</button>
+    <p><button type="submit" class="btn">Connexion</button></p>
   </form>
   <?= ($_SESSION['flash']['danger'])?? null; ?>
 </div>

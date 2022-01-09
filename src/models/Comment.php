@@ -152,17 +152,7 @@
             // si ya 0 comm
             $commentsAttributes = null;
         } 
-        else if (isset($comments) && is_iterable($comments) == false && get_class($comments) == "App\Models\Comment") {
-            // si ya 1 comm => un object de ce type là : "App\Models\Comment"
-            $attributes = [
-            'comment' => $comments,
-            'commentAuthorFullname' => $comments->getAuthorName(),
-            'commentCreatedAt' => $comments->displayDateTime($comments->getCreatedAt())
-            ];
-            array_push($commentsAttributes, $attributes);
-        } 
-        else if (isset($comments) && is_countable($comments) && count($comments) >= 1) {
-            // si ya plus de 1 comm => un array avec des items à l'interieur de type : "App\Models\Comment"
+        else if (isset($comments) && is_countable($comments)) {
             foreach($comments as $comment) {
                 $attributes = [
                     'comment' => $comment,

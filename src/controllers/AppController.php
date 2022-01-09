@@ -185,8 +185,9 @@ class AppController extends Controller {
   public function passwordFormView($token = null) {
     $admin = false;
     if ($token === null) {
-      $user = UserManager::getUserByToken($_SESSION['tokenAuth'], 'token_email_recuperation', 'User');
+      $user = UserManager::getUserByTokenAuth($_SESSION['tokenAuth'], 'User');
     } else {
+      $_SESSION['tokenEmail'] = $token;
       $user = UserManager::getUserByToken($token, 'token_email_recuperation', 'User');
     }
     if (isset($_SESSION['tokenAuth'])) {
@@ -201,8 +202,12 @@ class AppController extends Controller {
    *
    * @return
    */
-  public function passwordUpdate() {
-    $user = UserManager::getUserByTokenAuth($_SESSION['tokenAuth'], 'User');
+  public function passwordUpdate($token = null) {
+    if ($token === null) {
+      $user = UserManager::getUserByTokenAuth($_SESSION['tokenAuth'], 'User');
+    } else {
+      $user = UserManager::getUserByToken($token, 'token_email_recuperation', 'User');
+    }
     $email = (isset($_SESSION['emailUser'])) ? Validation::check($_SESSION['emailUser']) : $user->getEmail();
     $successEmail = UserManager::checkUserByAttribute($email, 'email');
     if ($successEmail) {

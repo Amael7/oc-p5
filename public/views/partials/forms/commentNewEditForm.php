@@ -1,15 +1,15 @@
-<div class="form-section">  
-  <form action="/blog/<?= ($_POST == []) ? "post-$postId/comment/new" : "post-$postId/comment-$commentId/edit" ?>" method="post">
-    <label for="title">Titre</label>
-    <input type="text" name="title" id="title" placeholder="Titre" required="required" value="<?= ($_POST["title"])?? "" ?>">
+<div class="form-container"> 
+  <form action="/blog/<?= ($_POST == []) ? "post-$postId/comment/new" : "post-$postId/comment-$commentId/edit" ?>" method="post" class="formulaire">
+    <p><label for="title">Titre</label></p>
+    <p><input type="text" name="title" id="title" placeholder="Titre" required="required" value="<?= ($_POST["title"])?? "" ?>"></p>
 
-    <label for="content">Contenu</label>
-    <textarea name="content" id="content" cols="15" rows="3" required="required"><?= $_POST['content']?? "" ?></textarea>
+    <p><label for="content">Contenu</label></p>
+    <p><textarea name="content" id="content" cols="15" rows="3" required="required"><?= $_POST['content']?? "" ?></textarea></p>
       
     <?php if ($_POST == []): ?>
-      <button type="submit" name="save">Ajouter</button>
+      <p><button type="submit" name="save" class="btn">Ajouter</button></p>
       <?php else: ?>
-      <button type="submit" name="update">Modifier</button>
+      <p><button type="submit" name="update" class="btn">Modifier</button></p>
     <?php endif; ?>
   </form>
 </div>
