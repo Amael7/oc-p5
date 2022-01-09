@@ -2,38 +2,35 @@
 
 .contact-form-section {
   margin: 0px auto;
-  /* height: 300px; */
-  /* padding: 40px; */
   padding-top: 20px;
   padding-bottom: 50px;
 }
 
-/* Contact Form Style End */
-
-/* .form-container {
-  display: flex;
-  flex-direction: column;
-} */
+.form-section {
+  margin: 0px auto;
+  padding-top: 20px;
+  padding-bottom: 50px;
+}
 
 .form-container p {
   padding: 0px;
   padding-bottom: 5px;
 }
 
-.contact-form {
+.formulaire {
   padding: 40px;
   width: 70%;
   margin: auto;
 }
 
-.contact-form input {
+.formulaire input {
   width: 70%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
 }
 
-.contact-form textarea {
+.formulaire textarea {
   width: 70%;
   height: 100px;
   padding: 12px 20px;
@@ -43,3 +40,15 @@
   resize: none;
   margin-bottom: 15px;
 }
+
+.formulaire select {
+  width: 70%;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  background-color: #f8f8f8;
+  margin-bottom: 15px;
+  border-radius: 4px;
+
+}
+
+/* Contact Form Style End */

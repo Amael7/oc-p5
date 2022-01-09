@@ -18,7 +18,19 @@
   <h1>Commentaire</h1>
 
   <?php if (isset($_SESSION['tokenAuth'])): ?>
-    <a href=<?= "/blog/post-{$post->getId()}/comment/new" ?> class="btn mg-left-xs mg-top-md">Ajouter un commentaire</a>
+    <div class="form-section pd-none">
+      <div class="form-container"> 
+        <form action="/blog/post-<?= $post->getId() ?>/comment/new" method="post" class="formulaire pd-form mg-none">
+          <p><label for="title">Titre</label></p>
+          <p><input type="text" name="title" id="title" placeholder="Titre" required="required"></p>
+
+          <p><label for="content">Contenu</label></p>
+          <p><textarea name="content" id="content" cols="15" rows="3" required="required"><?= $_POST['content']?? "" ?></textarea></p>
+            
+          <p><button type="submit" name="save" class="btn">Ajouter</button></p>
+        </form>
+      </div>
+    </div>
   <?php endif; ?>
 
   <?php if ((isset($admin) && $admin) && isset($unvalidComments) != false): ?>
@@ -59,11 +71,10 @@
             <p class="pd-btm-xxs pd-top-xxs mg-bottom-md"><?= $array['comment']->getContent() ?></p>
           </div>
           <?php if (isset($admin) && $admin): ?>
-            <a href=<?= "/blog/admin/post-{$post->getId()}/comment-{$array['comment']->getId()}/valid" ?> class="btn btn--pd-xs btn-bg-orange"><?= ($array['comment']->getValid())? "Annuler le commentaire" : "Valider le commentaire" ?></a>
+            <a href=<?= "/blog/admin/post-{$post->getId()}/comment-{$array['comment']->getId()}/valid" ?> class="btn btn--pd-xs btn-bg-orange mg-left-xs"><?= ($array['comment']->getValid())? "Annuler le commentaire" : "Valider le commentaire" ?></a>
           <?php endif; ?>
-          
           <?php if (isset($_SESSION['tokenAuth']) && ("{$_SESSION['tokenAuth']}" === $array['comment']->getAuthorId()) || isset($admin) && $admin): ?>
-            <a href=<?= "/blog/post-{$post->getId()}/comment-{$array['comment']->getId()}/delete" ?> class="btn btn--pd-xs btn-bg-red">Supprimer le commentaire</a>
+            <a href=<?= "/blog/post-{$post->getId()}/comment-{$array['comment']->getId()}/delete" ?> class="btn btn--pd-xs btn-bg-red mg-left-xs">Supprimer le commentaire</a>
           <?php endif; ?>
         </div>
       <?php endforeach; ?>

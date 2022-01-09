@@ -6,6 +6,9 @@
   justify-content: space-between;
   text-align: center;
   width: 100%;
+  position: absolute;
+  bottom: 0;
+  height: 2.5rem; 
 }
 
 .footer-container p {

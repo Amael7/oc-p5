@@ -1,7 +1,8 @@
 <div class="post-section">
   <?php if(isset($posts) && $posts == []): ?>
-    <h2>Aucun Articles</h2>
+    <h1>Aucun Articles</h1>
     <?php else: ?>
+      <h1 class="mg-left-xs">Articles</h1>
       <?php foreach($posts as $post): ?>
         <div class="article">
           <h2>

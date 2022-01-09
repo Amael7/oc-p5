@@ -1,13 +1,12 @@
 <p>Modification du mot de passe</p>
-<div class="form-section"> 
-  <form action="/passwordRecovery" method="post">
-  <form action="/passwordRecovery <?= (isset($_SESSION['tokenEmail'])) ? "-{$_SESSION['tokenEmail']}" : "" ?>" method="post">
-    <label for="password">Mot de passe</label>
-    <input type="password" name="password" id="password" placeholder="Mot de passe" required="required">
+<div class="form-container"> 
+  <form action="/passwordRecovery <?= (isset($_SESSION['tokenEmail'])) ? "-{$_SESSION['tokenEmail']}" : "" ?>" method="post" class="formulaire">
+    <p><label for="password">Mot de passe</label></p>
+    <p><input type="password" name="password" id="password" placeholder="Mot de passe" required="required"></p>
     
-    <label for="passwordCheck">Confirmer mot de passe</label>
-    <input type="password" name="passwordCheck" id="passwordCheck" placeholder="Confirmer mot de passe" required="required">
+    <p><label for="passwordCheck">Confirmer mot de passe</label></p>
+    <p><input type="password" name="passwordCheck" id="passwordCheck" placeholder="Confirmer mot de passe" required="required"></p>
 
-    <button type="submit">Envoyer</button>
+    <p><button type="submit" class="btn">Envoyer</button></p>
   </form>
 </div>

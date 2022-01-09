@@ -1,7 +1,7 @@
 <h3>Vous pouvez me contacter ici</h3>
 
 <div class="form-container"> 
-  <form action="/contactForm" method="post" class="contact-form">
+  <form action="/contactForm" method="post" class="formulaire">
     <p><label for="visitorName">Votre nom prénom</label></p>
     <p><input type="text" name="visitorName" id="visitorName" placeholder="Votre nom prénom" required="required"></p>
     
