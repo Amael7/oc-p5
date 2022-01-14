@@ -73,7 +73,7 @@
           <?php if (isset($admin) && $admin): ?>
             <a href=<?= "/blog/admin/post-{$post->getId()}/comment-{$array['comment']->getId()}/valid" ?> class="btn btn--pd-xs btn-bg-orange mg-left-xs"><?= ($array['comment']->getValid())? "Annuler le commentaire" : "Valider le commentaire" ?></a>
           <?php endif; ?>
-          <?php if (isset($_SESSION['tokenAuth']) && ("{$_SESSION['tokenAuth']}" === $array['comment']->getAuthorId()) || isset($admin) && $admin): ?>
+          <?php if (isset($_SESSION['tokenAuth']) && ($user->getId() === (int)$array['comment']->getAuthorId()) || isset($admin) && $admin): ?>
             <a href=<?= "/blog/post-{$post->getId()}/comment-{$array['comment']->getId()}/delete" ?> class="btn btn--pd-xs btn-bg-red mg-left-xs">Supprimer le commentaire</a>
           <?php endif; ?>
         </div>

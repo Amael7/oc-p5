@@ -23,8 +23,10 @@ class PostsController extends AppController {
   
   public function show($id) {
     $admin = false;
+    $user = false;
     if (isset($_SESSION['tokenAuth'])) {
       $admin = parent::checkUserAdmin($_SESSION['tokenAuth']);
+      $user = UserManager::getUserByTokenAuth($_SESSION['tokenAuth'], 'User');
     }
       $post = PostManager::getOne($id, "Post");
 
@@ -37,7 +39,7 @@ class PostsController extends AppController {
       $validComments = Comment::displayComments($validCommentsResult);
 
     $view = new View("Article n°$id", 'posts/show');
-    $view->render(compact('post', 'admin', 'unvalidComments', 'validComments'));
+    $view->render(compact('post', 'admin', 'unvalidComments', 'validComments', 'user'));
   }
   
   public function new() {
