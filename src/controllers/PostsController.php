@@ -17,6 +17,7 @@ class PostsController extends AppController {
       $admin = parent::checkUserAdmin($_SESSION['tokenAuth']);
     }
     $posts = PostManager::getAll("Post");
+    krsort($posts);
     $view = new View('Articles', 'posts/index');
     $view->render(compact('posts', 'admin'));
   }
