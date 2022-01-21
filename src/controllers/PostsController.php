@@ -48,8 +48,6 @@ class PostsController extends AppController {
       $admin = parent::checkUserAdmin($_SESSION['tokenAuth']);
       if ($admin) {
         $users = UserManager::getAllAdmin('User');
-        // dump($users);
-        // exit;
         $view = new View('Nouvelle Article', 'posts/new');
         $view->render(compact('users', 'admin'));
       }
@@ -99,7 +97,7 @@ class PostsController extends AppController {
     if (isset($_SESSION['tokenAuth'])) {
       $admin = parent::checkUserAdmin($_SESSION['tokenAuth']);
       if ($admin) {
-        $users = UserManager::getAll('User');
+        $users = UserManager::getAllAdmin('User');
         $post = PostManager::getOne($id, "Post");
         $postId = $post->getId();
         $_POST['title'] =  $post->getTitle();
