@@ -1,7 +1,7 @@
 # oc-p5
 
 ### Pré-requis :
-- PHP 7.4.9, MySQL, Apache.
+- PHP 7.4.9, MySQL Version 5.7.30, Apache 2.4.48 (Unix).
 
 ### Installations :
 
